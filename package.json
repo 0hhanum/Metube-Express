@@ -1,0 +1,16 @@
+{
+  "name": "youandmetube",
+  "version": "1.0.0",
+  "description": "NodeJS Project",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/0hhanum/youandmetube-NodeJS.git"
+  },
+  "author": "Hanum",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/0hhanum/youandmetube-NodeJS/issues"
+  },
+  "homepage": "https://github.com/0hhanum/youandmetube-NodeJS#readme"
+}

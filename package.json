@@ -2,15 +2,26 @@
   "name": "youandmetube",
   "version": "1.0.0",
   "description": "NodeJS Project",
-  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/0hhanum/youandmetube-NodeJS.git"
+  },
+  "scripts": {
+    "dev": "nodemon --exec babel-node index.js"
   },
   "author": "Hanum",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/0hhanum/youandmetube-NodeJS/issues"
   },
-  "homepage": "https://github.com/0hhanum/youandmetube-NodeJS#readme"
+  "homepage": "https://github.com/0hhanum/youandmetube-NodeJS#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.14.6",
+    "@babel/node": "^7.14.7",
+    "@babel/preset-env": "^7.14.7",
+    "nodemon": "^2.0.12"
+  }
 }

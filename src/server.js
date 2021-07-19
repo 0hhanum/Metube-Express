@@ -1,6 +1,10 @@
 import express from "express";
 import morgan from "morgan";
-// babel 이용해 최신문법 적용, import 뒤는 이름 상관없음 (python as 와 유사)
+import globalRouter from "./routers/globalRouter";
+import videoRouter from "./routers/videoRouter";
+import userRouter from "./routers/userRouter";
+
+// babel 이용해 최신문법 적용, import 뒤는 모듈이 default export 인 경우 이름 상관없음 (python as 와 유사)
 // const express = require("express");
 
 const PORT = 4000;
@@ -10,18 +14,6 @@ const logger = morgan("dev");
 
 app.use(logger);
 // use 는 global middleware(모든 route 에서 사용) 를 만들어줌. **get 보다 먼저 와야함!
-
-const globalRouter = express.Router();
-const handleHome = (req, res) => res.send("Home");
-globalRouter.get("/", handleHome);
-
-const userRouter = express.Router();
-const handleEditUser = (req, res) => res.send("Edit User");
-userRouter.get("/edit", handleEditUser);
-
-const videoRouter = express.Router();
-const handleWatchVideo = (req, res) => res.send("Watch Video");
-videoRouter.get("/watch", handleWatchVideo);
 
 app.use("/", globalRouter);
 app.use("/videos", videoRouter);

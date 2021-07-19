@@ -2,19 +2,19 @@
 
 # Global Router
 
-/ -> Home
-/join -> Join
-/login -> Login
-/search -> Search
+/ 
+/join 
+/login 
+/search 
 
 # User Router
 
-/users/edit -> Edit user
-/users/delete -> Delete user
+/users/edit 
+/users/delete 
 
 # Video Router
-/videos/watch -> Watch Video
-/videos/edit -> Edit Video
-/videos/delete -> Delete Video
-/videos/comments -> Comment on a video
-/videos/comments/delete -> Delete A Comment of a Video
+/videos/watch 
+/videos/edit 
+/videos/delete 
+/videos/comments 
+/videos/comments/delete 

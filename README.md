@@ -1,5 +1,6 @@
 ## NodeJS practice project 🕹
 
+
 # Global Router
 
 / 
@@ -9,12 +10,13 @@
 
 # User Router
 
-/users/edit 
-/users/delete 
+/users/:id 
+/users/logout
+/users/edit
+/users/delete
 
 # Video Router
-/videos/watch 
-/videos/edit 
-/videos/delete 
-/videos/comments 
-/videos/comments/delete 
+/videos/:id 
+/videos/upload 
+/videos/:id/edit 
+/videos/:id/delete 

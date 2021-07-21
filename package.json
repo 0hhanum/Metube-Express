@@ -1,5 +1,5 @@
 {
-  "name": "youandmetube",
+  "name": "metube",
   "version": "1.0.0",
   "description": "NodeJS Project",
   "repository": {
@@ -17,7 +17,8 @@
   "homepage": "https://github.com/0hhanum/youandmetube-NodeJS#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "pug": "^3.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.14.6",

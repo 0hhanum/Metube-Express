@@ -1,4 +1,11 @@
-extends base.pug
+extends base
+include mixins/video
 
-block content 
-    h1 HOME
+block content
+    h2 인기 동영상
+    each video in videos
+        +video(video)
+        //- mixin 호출
+    else
+        li 영상이 존재하지 않습니다.
+

@@ -1,0 +1,10 @@
+//- 믹스인으로 활용할 객체 이름(믹스인이 받을 객체명)
+mixin video(info)
+    div 
+        h4=info.title
+        ul 
+            li #{info.rating}/5
+            li #{info.comments} comments
+            li Created at #{info.createdAt}
+            li #{info.views} views 
+

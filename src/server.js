@@ -17,7 +17,8 @@ app.set("views", process.cwd() + "/src/views");
 // views 폴더 경로 설정 (기본값은 node 시작점인 package.json 의 위치)
 app.use(logger);
 // use 는 global middleware(모든 route 에서 사용) 를 만들어줌. **get 보다 먼저 와야함!
-
+app.use(express.urlencoded({ extended: true }))
+// express app 이 form 을 이해할 수 있도록 하는 Middleware
 app.use("/", globalRouter);
 app.use("/videos", videoRouter);
 app.use("/users", userRouter);

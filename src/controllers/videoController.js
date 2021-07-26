@@ -57,6 +57,21 @@ export const postEdit = (req, res) => {
     return res.redirect(`/videos/${id}`);
 };
 
+export const getUpload = (req, res) => {
+    return res.render("upload", { pageTitle: "Upload Video" });
+}
+export const postUpload = (req, res) => {
+    const newVideo = {
+        title: req.body.title,
+        rating: 0,
+        comments: 0,
+        createdAt: "now",
+        views: 0,
+        id: videos.length + 1
+    };
+    videos.push(newVideo);
+    return res.redirect("/");
+}
 
 // export default 를 하면 한 모듈에서 하나의 변수를 export 하게 됨.
 // 위와 같은 방법으로 한 파일에서 여러 개를 export 할 수 있음

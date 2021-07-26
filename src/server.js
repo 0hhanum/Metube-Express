@@ -1,3 +1,5 @@
+import "./db";
+// 파일 자체를 import. 파일은 import 되는 순간 실행되며 따라서 서버에 db를 연결시킬 수 있다.
 import express from "express";
 import morgan from "morgan";
 import globalRouter from "./routers/globalRouter";
@@ -25,7 +27,7 @@ app.use("/users", userRouter);
 // Router 설정
 
 
-const handleListening = () => console.log(`Server listening on port http://localhost:${PORT} 🚀`)
+const handleListening = () => console.log(`✅ Server listening on port http://localhost:${PORT} 🚀`)
 // ES6 함수 생성법 (매개변수) => 함수 console.log("Server listening on port 4000 🚀")
 
 app.listen(PORT, handleListening);

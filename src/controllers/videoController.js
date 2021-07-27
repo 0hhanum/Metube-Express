@@ -1,3 +1,4 @@
+import { async } from "regenerator-runtime";
 import Video from "../models/Video";
 
 // export default 를 하면 한 모듈에서 하나의 변수를 export 하게 됨.
@@ -60,6 +61,18 @@ export const postEdit = (req, res) => {
 export const getUpload = (req, res) => {
     return res.render("upload", { pageTitle: "Upload Video" });
 }
-export const postUpload = (req, res) => {
+export const postUpload = async (req, res) => {
+    const { title, description, hashtags } = req.body;
+    const video = new Video({
+        title,
+        description,
+        createdAt: Date.now(),
+        hashtags: hashtags.split(",").map(word => `#${word}`),
+        meta: {
+            views: 0,
+            rating: 0
+        }
+    });
+    await video.save();
     return res.redirect("/");
 }

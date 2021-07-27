@@ -3,4 +3,7 @@ extends base
 block content 
     form(method="POST")
         input(name="title", placeholder="제목", required, type="text")
+        input(name="description", placeholder="내용", required, type="text")
+        input(name="hashtags", placeholder="해시태그 (A, B, ...)", required, type="text")
         input(type="submit", value="등록")
+

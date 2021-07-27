@@ -2,7 +2,6 @@ extends base
 include mixins/video
 
 block content
-    h2 인기 동영상
     each video in videos
         +video(video)
         //- mixin 호출

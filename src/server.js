@@ -1,5 +1,8 @@
 import "./db";
-// 파일 자체를 import. 파일은 import 되는 순간 실행되며 따라서 서버에 db를 연결시킬 수 있다.
+// 파일 자체를 import. 파일은 import 되는 순간 실행되며 서버에 db를 연결시킨다.
+import "./models/Video";
+// 마찬가지로 import 를 통해 실행시켜 model 의 형태를 전달.
+
 import express from "express";
 import morgan from "morgan";
 import globalRouter from "./routers/globalRouter";

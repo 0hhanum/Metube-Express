@@ -17,4 +17,4 @@ db.on("error", handleError);
 db.once("open", handleOpen);
 
 // on 과 once 는 eventlistner 같은 역할을 하는듯. 다만 on 은 횟수 상관없이 실행, once 는 한번만. 알아봐야 할듯
-// on = addEventListener, once 는 한번만 연결한 후 제거되는 메소드
+// on = addEventListener, once 는 한번만 연결한 후 제거되는 메소드, js 엔 없고 nodeJS 에만 있는 것 같음.

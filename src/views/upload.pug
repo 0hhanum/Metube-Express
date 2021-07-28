@@ -1,9 +1,11 @@
 extends base
 
-block content 
+block content
+    if errorMessage 
+        h1=errorMessage
     form(method="POST")
-        input(name="title", placeholder="제목", required, type="text")
-        input(name="description", placeholder="내용", required, type="text")
+        input(name="title", placeholder="제목", required, type="text", maxlength=80)
+        input(name="description", placeholder="내용", required, type="text", minlength=10)
         input(name="hashtags", placeholder="해시태그 (A, B, ...)", required, type="text")
         input(type="submit", value="등록")
 

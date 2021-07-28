@@ -3,6 +3,8 @@ extends base.pug
 block content
     //- h3 #{video.views} #{video.views === 1 ? "view" : "views" }
     //- inline if문
-    h3 조회수 #{video.views} 회
+    div
+        p=video.description
+        small=video.createdAt
     a(href=`${video.id}/edit`) 수정하기 &rarr;
     //- href 경로가 /로 시작하면 절대경로 그냥 시작하면 상대경로

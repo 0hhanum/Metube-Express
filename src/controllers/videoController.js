@@ -36,11 +36,12 @@ export const home = async (req, res) => {
 //  이를 비동기 처리라 함. js 문법으로 async function 내에서만 await 사용 가능.
 
 
-export const watch = (req, res) => {
+export const watch = async (req, res) => {
     const { id } = req.params
+    const video = await Video.findById(id);
     // ES6 문법. const id = req.params.id 와 동일 
     return res.render("watch", {
-        pageTitle: `Watching: #${id}`,
+        pageTitle: video.title, video
     });
 }
 
@@ -55,6 +56,7 @@ export const getEdit = (req, res) => {
 export const postEdit = (req, res) => {
     const { id } = req.params;
     const { title } = req.body;
+    // post 내용 얻는법 => req.body, params 는 router 에서 지정한 url 내 변수.
     return res.redirect(`/videos/${id}`);
 };
 

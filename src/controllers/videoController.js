@@ -40,23 +40,40 @@ export const watch = async (req, res) => {
     const { id } = req.params
     const video = await Video.findById(id);
     // ES6 문법. const id = req.params.id 와 동일 
+    if (!video) {
+        return res.render("404", { pageTitle: "잘못된 접근입니다." });
+    }
     return res.render("watch", {
         pageTitle: video.title, video
     });
 }
 
-export const getEdit = (req, res) => {
+
+export const getEdit = async (req, res) => {
     const { id } = req.params
+    const video = await Video.findById(id);
+
+    if (!video) {
+        return res.render("404", { pageTitle: "잘못된 접근입니다." });
+    }
 
     return res.render("edit", {
-        pageTitle: "Editing Video",
+        pageTitle: "수정하기", video
     });
 }
 
-export const postEdit = (req, res) => {
+export const postEdit = async (req, res) => {
     const { id } = req.params;
-    const { title } = req.body;
+    const { title, description, hashtags } = req.body;
+    const exist = await Video.exists({ _id: id });
+    if (!exist) {
+        return res.render("404", { pageTitle: "잘못된 접근입니다." });
+    }
     // post 내용 얻는법 => req.body, params 는 router 에서 지정한 url 내 변수.
+    await Video.findByIdAndUpdate(id, {
+        title, description,
+        hashtags: hashtags.split(",").map((word) => (word.startsWith("#") ? word : `#${word}`))
+    });
     return res.redirect(`/videos/${id}`);
 };
 

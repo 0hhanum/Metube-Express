@@ -15,12 +15,23 @@ const videoSchema = new mongoose.Schema({
 
 // new => js 의 생성자. 파이썬 클래스의 init 처럼 객체를 반환해준다.
 
-videoSchema.pre("save", async function () {
-    console.log(this.hashtags);
-    this.hashtags = this.hashtags[0].split(",").map((word) => word.startsWith("#") ? word : `#${word}`)
+/*
+ ** Video 의 pre 메소드 (hook, middleware) 이용하기
+ videoSchema.pre("save", async function () {
+     console.log(this.hashtags);
+     this.hashtags = this.hashtags[0].split(",").map((word) => word.startsWith("#") ? word : `#${word}`)
+ })
+ videoSchema 가 실행되기 전에 시행할 함수 (hook -> middleware 개념)
+ this 는 python 클래스의 self 와 유사.
+*/
+
+
+// static 이용 Video의 메소드 커스텀하기
+videoSchema.static('formatHashtags', function (hashtags) {
+    return hashtags.split(",").map((word) => (word.startsWith("#") ? word : `#${word}`))
 })
-// videoSchema 가 실행되기 전에 시행할 함수 (hook -> middleware 개념)
-// this 는 python 클래스의 self 와 유사.
+
+
 
 const Video = mongoose.model("Video", videoSchema);
 

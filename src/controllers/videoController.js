@@ -1,4 +1,3 @@
-import { async } from "regenerator-runtime";
 import Video from "../models/Video";
 
 // export default 를 하면 한 모듈에서 하나의 변수를 export 하게 됨.
@@ -71,7 +70,8 @@ export const postEdit = async (req, res) => {
     }
     // post 내용 얻는법 => req.body, params 는 router 에서 지정한 url 내 변수.
     await Video.findByIdAndUpdate(id, {
-        title, description, hashtags
+        title, description,
+        hashtags: Video.formatHashtags(hashtags)
     });
     return res.redirect(`/videos/${id}`);
 };
@@ -85,7 +85,7 @@ export const postUpload = async (req, res) => {
         const video = new Video({
             title,
             description,
-            hashtags
+            hashtags: Video.formatHashtags(hashtags)
         });
         await video.save();
         return res.redirect("/");

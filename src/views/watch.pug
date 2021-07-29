@@ -7,4 +7,6 @@ block content
         p=video.description
         small=video.createdAt
     a(href=`${video.id}/edit`) 수정하기 &rarr;
+    br
+    a(href=`${video.id}/delete`) 삭제하기 
     //- href 경로가 /로 시작하면 절대경로 그냥 시작하면 상대경로

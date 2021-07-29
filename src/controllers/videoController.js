@@ -71,8 +71,7 @@ export const postEdit = async (req, res) => {
     }
     // post 내용 얻는법 => req.body, params 는 router 에서 지정한 url 내 변수.
     await Video.findByIdAndUpdate(id, {
-        title, description,
-        hashtags: hashtags.split(",").map((word) => (word.startsWith("#") ? word : `#${word}`))
+        title, description, hashtags
     });
     return res.redirect(`/videos/${id}`);
 };
@@ -86,7 +85,7 @@ export const postUpload = async (req, res) => {
         const video = new Video({
             title,
             description,
-            hashtags: hashtags.split(",").map(word => `#${word}`),
+            hashtags
         });
         await video.save();
         return res.redirect("/");

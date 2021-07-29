@@ -3,6 +3,7 @@ import mongoose, { mongo } from "mongoose";
 mongoose.connect("mongodb://127.0.0.1:27017/metube", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useFindAndModify: false,
 })
 // mongoDB 생성방법 => 자신 db 주소 뒤에 db 명을 추가해줌.
 // mongoDB -> document data model 임. json 처럼.

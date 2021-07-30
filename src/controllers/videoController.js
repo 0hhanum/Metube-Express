@@ -20,7 +20,7 @@ import Video from "../models/Video";
 
 export const home = async (req, res) => {
     try {
-        const videos = await Video.find({})
+        const videos = await Video.find({}).sort({ createdAt: "desc" });
         // callback 과 다른 async await 비동기 처리 js 의 promise.
         return res.render("home", { pageTitle: "Home", videos });
     } catch {
@@ -101,4 +101,19 @@ export const deleteVideo = async (req, res) => {
     const { id } = req.params;
     await Video.findByIdAndDelete(id);
     return res.redirect("/")
+}
+
+
+export const search = async (req, res) => {
+    const { keyword } = req.query;
+    let videos = [];
+    if (keyword) {
+        videos = await Video.find({
+            title: { $regex: new RegExp(keyword, "i") }
+            // 정규표현식으로 찾기. i 는 keyword를 대소문자 구분 없이 찾는 것을 의미
+            // $regex 는 mongoDB 에서 지원. mongoose 는 이를 전달해준다.
+
+        })
+    }
+    return res.render("search", { pageTitle: "Search", videos });
 }

@@ -1,6 +1,6 @@
 import express from "express";
 import morgan from "morgan";
-import globalRouter from "./routers/globalRouter";
+import rootRouter from "./routers/rootRouter";
 import videoRouter from "./routers/videoRouter";
 import userRouter from "./routers/userRouter";
 
@@ -20,7 +20,7 @@ app.set("views", process.cwd() + "/src/views");
 app.use(express.urlencoded({ extended: true }))
 // express app 이 form 을 이해할 수 있도록 하는 Middleware
 
-app.use("/", globalRouter);
+app.use("/", rootRouter);
 app.use("/videos", videoRouter);
 app.use("/users", userRouter);
 // Router 설정

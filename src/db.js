@@ -5,6 +5,8 @@ mongoose.connect("mongodb://127.0.0.1:27017/metube", {
     useUnifiedTopology: true,
     useFindAndModify: false,
 })
+mongoose.set('useCreateIndex', true)
+
 // mongoDB 생성방법 => 자신 db 주소 뒤에 db 명을 추가해줌.
 // mongoDB -> document data model 임. json 처럼.
 // 다른 sql 기반 DB 와의 차이점.

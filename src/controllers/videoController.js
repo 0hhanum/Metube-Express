@@ -23,8 +23,8 @@ export const home = async (req, res) => {
         const videos = await Video.find({}).sort({ createdAt: "desc" });
         // callback 과 다른 async await 비동기 처리 js 의 promise.
         return res.render("home", { pageTitle: "Home", videos });
-    } catch {
-        return res.render("ERROR!");
+    } catch (error) {
+        return res.render("404", { pageTitle: error });
     }
 };
 

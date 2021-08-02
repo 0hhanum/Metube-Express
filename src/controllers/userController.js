@@ -5,12 +5,13 @@ export const postJoin = async (req, res) => {
     const { email, username, password1, password2, name, location } = req.body;
     const exists = await User.exists({ $or: [{ username }, { email }] });
     // $or operator -> mongoose 기능. array 내의 조건들을 or 로 판단해 결과 반환
-    if (password1 !== password2) {
-        return res.render("join", { pageTitle: "가입하기", errorMessage: "비밀번호가 서로 일치하지 않습니다." })
-    }
     if (exists) {
-        return res.render("join", { pageTitle: "가입하기", errorMessage: "이미 사용중인 이름/이메일 입니다." })
+        return res.status(400).render("join", { pageTitle: "가입하기", errorMessage: "이미 사용중인 이름/이메일 입니다." })
     };
+    // status 400 을 보냄으로써 브라우저가 계정 생성에 실패함을 인식.(비밀번호 자동 저장 물음 X)
+    if (password1 !== password2) {
+        return res.status(400).render("join", { pageTitle: "가입하기", errorMessage: "비밀번호가 서로 일치하지 않습니다." })
+    }
     await User.create({ email, username, password, name, location });
     res.redirect("/login");
 }

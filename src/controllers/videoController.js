@@ -53,7 +53,7 @@ export const getEdit = async (req, res) => {
     const video = await Video.findById(id);
 
     if (!video) {
-        return res.render("404", { pageTitle: "잘못된 접근입니다." });
+        return res.status(404).render("404", { pageTitle: "잘못된 접근입니다." });
     }
 
     return res.render("edit", {
@@ -66,7 +66,7 @@ export const postEdit = async (req, res) => {
     const { title, description, hashtags } = req.body;
     const exist = await Video.exists({ _id: id });
     if (!exist) {
-        return res.render("404", { pageTitle: "잘못된 접근입니다." });
+        return res.status(404).render("404", { pageTitle: "잘못된 접근입니다." });
     }
     // post 내용 얻는법 => req.body, params 는 router 에서 지정한 url 내 변수.
     await Video.findByIdAndUpdate(id, {
@@ -90,7 +90,7 @@ export const postUpload = async (req, res) => {
         await video.save();
         return res.redirect("/");
     } catch (error) {
-        return res.render("upload", {
+        return res.status(400).render("upload", {
             pageTitle: "Upload Video",
             errorMessage: error._message
         });

@@ -1,7 +1,7 @@
 doctype html 
 html(lang="ko")
     head 
-        title #{pageTitle} | Metube
+        title #{pageTitle} | #{siteName}
         link(rel="stylesheet" href="https://unpkg.com/mvp.css")
 
     body
@@ -15,8 +15,16 @@ html(lang="ko")
                         a(href="/videos/upload") UPLOAD
                     li 
                         a(href="/search") SEARCH
-                    li 
-                        a(href="/join") JOIN
+                    if !loggedIn
+                        li 
+                            a(href="/join") JOIN
+                        li 
+                            a(href="/login") LOGIN
+                    else 
+                        li
+                            a(href="profile") MYPAGE
+                        li
+                            a(href="logout") LOGOUT
         main
             block content
     include partials/footer

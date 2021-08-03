@@ -33,10 +33,14 @@ export const postLogin = async (req, res) => {
         return res.status(400).render("login", { pageTitle, errorMessage: "계정이 존재하지 않습니다." })
     }
     const ok = await bcrypt.compare(password, user.password);
+    // 해시된 password 와 입력된 password 를 비교해줌.
     if (!ok) {
         return res.status(400).render("login", { pageTitle, errorMessage: "비밀번호가 틀립니다." })
     }
-    return res.end();
+    req.session.loggedIn = true;
+    req.session.user = user;
+
+    return res.redirect("/");
 };
 export const logout = (req, res) => res.send("LogOut");
 export const see = (req, res) => res.send("See");

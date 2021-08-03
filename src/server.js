@@ -1,5 +1,8 @@
 import express from "express";
 import morgan from "morgan";
+import session from "express-session";
+
+import { localsMiddleware } from "./middlewares";
 import rootRouter from "./routers/rootRouter";
 import videoRouter from "./routers/videoRouter";
 import userRouter from "./routers/userRouter";
@@ -19,6 +22,11 @@ app.set("views", process.cwd() + "/src/views");
 
 app.use(express.urlencoded({ extended: true }))
 // express app 이 form 을 이해할 수 있도록 하는 Middleware
+app.use(session({
+    secret: "Hello!", resave: true, saveUninitialized: true
+}))
+// express-session 을 이용해 브라우저와 back-end 간의 세션 교환이 "매번" 이루어지도록 한다.
+app.use(localsMiddleware);
 
 app.use("/", rootRouter);
 app.use("/videos", videoRouter);

@@ -23,13 +23,14 @@ app.set("views", process.cwd() + "/src/views");
 app.use(express.urlencoded({ extended: true }))
 // express app 이 form 을 이해할 수 있도록 하는 Middleware
 app.use(session({
-    secret: "Hello!",
-    resave: true,
-    saveUninitialized: true,
+    secret: process.env.COOKIE_SECRET,
+    resave: false,
+    saveUninitialized: false,
     store: MongoStore.create({
-        mongoUrl: "mongodb://127.0.0.1:27017/metube",
+        mongoUrl: process.env.DB_URL,
     })
 }))
+// saveUninitialized => session 이 수정되지 않아도 저장함. => false 로 함으로써 user 가 로그인 할 때만 session 을 저장(userController)
 /*
 express-session 은 브라우저와 back-end 간의 "매번" 이루어지는 쿠키 교환에 session ID 를 넣어준다. 
 express-session 은 쿠키에 session ID 를 넣어서 브라우저로 전송하고, 브라우저는 매 request 마다

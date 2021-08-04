@@ -44,3 +44,18 @@ export const postLogin = async (req, res) => {
 };
 export const logout = (req, res) => res.send("LogOut");
 export const see = (req, res) => res.send("See");
+export const startGithubLogin = (req, res) => {
+    const baseUrl = "https://github.com/login/oauth/authorize";
+    const config = {
+        client_id: "91c5265d8e9c8575e964",
+        scope: "read:user user:email"
+    };
+    const params = new URLSearchParams(config).toString();
+    // config object 를 url 형식으로(client_id =...& scope=...) inconding 해줌
+    const finalUrl = `https://github.com/login/oauth/authorize?${params}`;
+    return res.redirect(finalUrl);
+};
+
+export const finishGithubLogin = (req, res) => {
+
+};

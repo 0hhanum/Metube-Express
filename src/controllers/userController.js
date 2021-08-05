@@ -90,12 +90,35 @@ export const finishGithubLogin = async (req, res) => {
                     Authorization: `token ${access_token}`
                 }
             })).json();
-        const email = emailData.find(
+        const emailObj = emailData.find(
             (email) => email.primary === true && email.verified === true
         );
-        if (!email) {
+        if (!emailObj) {
             return res.redirect("/login");
         }
+        const existingUser = await User.findOne({ email: emailObj.email });
+        if (existingUser) {
+            req.session.loggedIn = true;
+            req.session.user = existingUser;
+            return res.redirect("/");
+        } else {
+            try {
+                const user = await User.create({
+                    email: emailObj.email,
+                    username: userData.login,
+                    password: "",
+                    name: userData.name,
+                    location: userData.location,
+                    socialOnly: true
+                });
+                req.session.loggedIn = true;
+                req.session.user = user;
+                return res.redirect("/");
+            } catch (error) {
+                res.status(404).render("join", { pageTitle: "가입하기", errorMessage: error._message })
+            }
+        }
+
     } else {
         return res.redirect("/login");
     }

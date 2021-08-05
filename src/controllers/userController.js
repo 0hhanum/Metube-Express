@@ -1,17 +1,18 @@
 import bcrypt from "bcrypt";
+import { token } from "morgan";
 import fetch from "node-fetch";
 import User from "../models/User";
 
 export const getJoin = (req, res) => res.render("join", { pageTitle: "가입하기" });
 export const postJoin = async (req, res) => {
-    const { email, username, password1, password2, name, location } = req.body;
+    const { email, username, password, password2, name, location } = req.body;
     const exists = await User.exists({ $or: [{ username }, { email }] });
     // $or operator -> mongoose 기능. array 내의 조건들을 or 로 판단해 결과 반환
     if (exists) {
         return res.status(400).render("join", { pageTitle: "가입하기", errorMessage: "이미 사용중인 이름/이메일 입니다." })
     };
     // status 400 을 보냄으로써 브라우저가 계정 생성에 실패함을 인식.(비밀번호 자동 저장 물음 X)
-    if (password1 !== password2) {
+    if (password !== password2) {
         return res.status(400).render("join", { pageTitle: "가입하기", errorMessage: "비밀번호가 서로 일치하지 않습니다." })
     }
     try {
@@ -66,13 +67,26 @@ export const finishGithubLogin = async (req, res) => {
     };
     const params = new URLSearchParams(config).toString();
     const finalUrl = `${baseUrl}?${params}`;
-    const data = await fetch(finalUrl, {
-        method: "POST",
-        headers: {
-            Accept: "application/json"
-        }
-    });
-    const json = await data.json();
-    console.log(json);
+    const tokenRequest = await (
+        await fetch(finalUrl, {
+            method: "POST",
+            headers: {
+                Accept: "application/json"
+            }
+        })).json();
+
+    if ('access_token' in tokenRequest) {
+        const { access_token } = tokenRequest;
+        const userRequest = await (
+            await fetch("https://api.github.com/user", {
+                headers: {
+                    Authorization: `token ${access_token}`
+                }
+            })).json();
+        console.log(userRequest);
+    } else {
+        return res.redirect("/login");
+    }
+
 };
 

@@ -1,5 +1,4 @@
 import bcrypt from "bcrypt";
-import { token } from "morgan";
 import fetch from "node-fetch";
 import User from "../models/User";
 
@@ -23,10 +22,11 @@ export const postJoin = async (req, res) => {
         res.status(404).render("join", { pageTitle: "가입하기", errorMessage: error._message })
     }
 }
-export const edit = (req, res) => res.send("Edit User");
+
 export const getLogin = (req, res) => {
     return res.render("login", { pageTitle: "로그인" });
 }
+
 export const postLogin = async (req, res) => {
     const { username, password } = req.body;
     const pageTitle = "로그인";
@@ -44,11 +44,12 @@ export const postLogin = async (req, res) => {
 
     return res.redirect("/");
 };
+
 export const logout = (req, res) => {
     req.session.destroy();
     return res.redirect("/");
 };
-export const see = (req, res) => res.send("See");
+
 export const startGithubLogin = (req, res) => {
     const baseUrl = "https://github.com/login/oauth/authorize";
     const config = {
@@ -123,3 +124,11 @@ export const finishGithubLogin = async (req, res) => {
     }
 };
 
+export const getEdit = (req, res) => {
+    res.render("edit-profile", { pageTitle: "수정하기" });
+};
+
+export const postEdit = (req, res) => {
+    return res.render("edit-profile");
+};
+export const see = (req, res) => res.send("See");

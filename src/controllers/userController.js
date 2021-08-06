@@ -19,18 +19,18 @@ export const postJoin = async (req, res) => {
         await User.create({ email, username, password, name, location });
         res.redirect("/login");
     } catch (error) {
+        console.log(error);
         res.status(404).render("join", { pageTitle: "가입하기", errorMessage: error._message })
     }
 }
 export const edit = (req, res) => res.send("Edit User");
-export const deleteUser = (req, res) => res.send("Delete User");
 export const getLogin = (req, res) => {
     return res.render("login", { pageTitle: "로그인" });
 }
 export const postLogin = async (req, res) => {
     const { username, password } = req.body;
     const pageTitle = "로그인";
-    const user = await User.findOne({ username });
+    const user = await User.findOne({ username, socialOnly: false });
     if (!user) {
         return res.status(400).render("login", { pageTitle, errorMessage: "계정이 존재하지 않습니다." })
     }
@@ -44,7 +44,10 @@ export const postLogin = async (req, res) => {
 
     return res.redirect("/");
 };
-export const logout = (req, res) => res.send("LogOut");
+export const logout = (req, res) => {
+    req.session.destroy();
+    return res.redirect("/");
+};
 export const see = (req, res) => res.send("See");
 export const startGithubLogin = (req, res) => {
     const baseUrl = "https://github.com/login/oauth/authorize";
@@ -74,7 +77,6 @@ export const finishGithubLogin = async (req, res) => {
                 Accept: "application/json"
             }
         })).json();
-
     if ('access_token' in tokenRequest) {
         const { access_token } = tokenRequest;
         const apiUrl = "https://api.github.com"
@@ -96,32 +98,28 @@ export const finishGithubLogin = async (req, res) => {
         if (!emailObj) {
             return res.redirect("/login");
         }
-        const existingUser = await User.findOne({ email: emailObj.email });
-        if (existingUser) {
-            req.session.loggedIn = true;
-            req.session.user = existingUser;
-            return res.redirect("/");
-        } else {
+        let user = await User.findOne({ email: emailObj.email });
+        if (!user) {
             try {
-                const user = await User.create({
+                user = await User.create({
                     email: emailObj.email,
                     username: userData.login,
                     password: "",
                     name: userData.name,
                     location: userData.location,
-                    socialOnly: true
+                    socialOnly: true,
+                    avatarUrl: userData.avatar_url
                 });
-                req.session.loggedIn = true;
-                req.session.user = user;
-                return res.redirect("/");
             } catch (error) {
-                res.status(404).render("join", { pageTitle: "가입하기", errorMessage: error._message })
+                console.log(error);
+                return res.status(404).render("join", { pageTitle: "가입하기", errorMessage: error._message })
             }
         }
-
+        req.session.loggedIn = true;
+        req.session.user = user;
+        return res.redirect("/");
     } else {
         return res.redirect("/login");
     }
-
 };
 

@@ -22,6 +22,7 @@ app.set("views", process.cwd() + "/src/views");
 
 app.use(express.urlencoded({ extended: true }))
 // express app 이 form 을 이해할 수 있도록 하는 Middleware
+
 app.use(session({
     secret: process.env.COOKIE_SECRET,
     resave: false,

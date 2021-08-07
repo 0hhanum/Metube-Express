@@ -9,3 +9,6 @@ block content
         input(name="username", type="text",required, value=loggedInUser.username, placeholder="아이디")
         input(name="location", type="text",required, value=loggedInUser.location, placeholder="지역")
         input(type="submit", value="변경하기")
+        hr
+        if !loggedInUser.socialOnly
+            a(href="change-password")  비밀번호 변경 &rarr;

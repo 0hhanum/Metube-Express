@@ -128,7 +128,51 @@ export const getEdit = (req, res) => {
     res.render("edit-profile", { pageTitle: "수정하기" });
 };
 
-export const postEdit = (req, res) => {
-    return res.render("edit-profile");
+export const postEdit = async (req, res) => {
+    const { session: { user, user: { _id } },
+        body: { name, email, username, location } } = req;
+    /*
+    const userId = req.session.user._id 
+    const { name, email, username, location } = req.body;
+    와 동일. req.session 에서 user : _id 찾고, req.body 에서 수정한 정보 찾기.
+    */
+
+    if (name !== user.name) {
+        const exists = await User.exists({ name });
+        if (exists) {
+            return res.render("edit-profile", { pageTitle: "수정하기", errorMessage: "이미 존재하는 이름입니다." });
+        }
+    }
+    if (email !== user.email) {
+        const exists = await User.exists({ email });
+        if (exists) {
+            return res.render("edit-profile", { pageTitle: "수정하기", errorMessage: "중복되는 메일 주소입니다." });
+        }
+    }
+
+    const updatedUser = await User.findByIdAndUpdate(_id, {
+        name,
+        email,
+        username,
+        location
+    }, { new: true });
+    // new 옵션은 findByIdAndUpdate 가 updated object 를 반환할 건지 기존 것을 반환할 건지 결정
+
+    /*
+    여기까지만 하면 mongoDB 내 user 는 edit 가 되지만, session 은 로그인 할때 user 를 한 번 정의하기 때문에 바뀌지 않음.
+    따라서 session 내의 데이터도 변경해줘야함.
+    ...req.session.user => req.session.user 내의 데이터를 의미함. (password, avatarURL 등 나머지 데이터 처리)
+    
+    req.session.user = {
+        ...req.session.user,
+        name,
+        email,
+        username,
+        location
+    } 이런식으로 
+    */
+
+    req.session.user = updatedUser;
+    return res.redirect("edit");
 };
 export const see = (req, res) => res.send("See");

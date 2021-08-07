@@ -12,8 +12,6 @@ html(lang="ko")
                     li
                         a(href="/") HOME
                     li 
-                        a(href="/videos/upload") UPLOAD
-                    li 
                         a(href="/search") SEARCH
                     if !loggedIn
                         li 
@@ -21,6 +19,8 @@ html(lang="ko")
                         li 
                             a(href="/login") LOGIN
                     else 
+                        li 
+                            a(href="/videos/upload") UPLOAD
                         li
                             a(href="/users/edit") EDIT
                         li

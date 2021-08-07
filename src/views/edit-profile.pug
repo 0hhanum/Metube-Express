@@ -1,7 +1,8 @@
 extends base
 
 block content 
-
+    if errorMessage 
+        span=errorMessage
     form(method="POST")
         input(name="name", type="text",required, value=loggedInUser.name, placeholder="이름")
         input(name="email", type="email",required, value=loggedInUser.email, placeholder="이메일")

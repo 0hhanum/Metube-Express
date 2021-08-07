@@ -41,7 +41,6 @@ export const postLogin = async (req, res) => {
     }
     req.session.loggedIn = true;
     req.session.user = user;
-
     return res.redirect("/");
 };
 
@@ -129,10 +128,10 @@ export const getEdit = (req, res) => {
 };
 
 export const postEdit = async (req, res) => {
-    const { session: { user, user: { _id } },
+    const { session: { user, user: { _id, avatarUrl } },
         body: { name, email, username, location },
         file } = req;
-    console.log(file);
+
     /*
     const userId = req.session.user._id 
     const { name, email, username, location } = req.body;
@@ -153,6 +152,8 @@ export const postEdit = async (req, res) => {
     }
 
     const updatedUser = await User.findByIdAndUpdate(_id, {
+        avatarUrl: file ? file.path : avatarUrl,
+        // 사용자가 avatar 를 바꾸는게 아닌경우를 처리
         name,
         email,
         username,

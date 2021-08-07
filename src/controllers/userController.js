@@ -130,7 +130,9 @@ export const getEdit = (req, res) => {
 
 export const postEdit = async (req, res) => {
     const { session: { user, user: { _id } },
-        body: { name, email, username, location } } = req;
+        body: { name, email, username, location },
+        file } = req;
+    console.log(file);
     /*
     const userId = req.session.user._id 
     const { name, email, username, location } = req.body;

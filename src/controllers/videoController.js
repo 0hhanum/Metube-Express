@@ -80,16 +80,20 @@ export const getUpload = (req, res) => {
     return res.render("upload", { pageTitle: "Upload Video" });
 }
 export const postUpload = async (req, res) => {
+    const { path: fileUrl } = req.file;
+    // req.file.path 를 fileUrl 이란 변수로 저장. ES6!
     const { title, description, hashtags } = req.body;
     try {
         const video = new Video({
             title,
             description,
+            fileUrl,
             hashtags: Video.formatHashtags(hashtags)
         });
         await video.save();
         return res.redirect("/");
     } catch (error) {
+        console.log(error);
         return res.status(400).render("upload", {
             pageTitle: "Upload Video",
             errorMessage: error._message

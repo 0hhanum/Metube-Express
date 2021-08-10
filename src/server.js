@@ -41,6 +41,8 @@ session != cookie (정보 교환 수단)
 app.use(localsMiddleware);
 
 app.use("/uploads", express.static("uploads"));
+// express 로 하여금 /uploads url 에서 "uploads" 폴더 내에 접근 권한을 부여.
+
 app.use("/", rootRouter);
 app.use("/videos", videoRouter);
 app.use("/users", userRouter);

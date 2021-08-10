@@ -3,6 +3,7 @@ extends base.pug
 block content
     //- h3 #{video.views} #{video.views === 1 ? "view" : "views" }
     //- inline if문
+    video(src="/"+video.fileUrl, controls, width="70%")
     div
         p=video.description
         small=video.createdAt

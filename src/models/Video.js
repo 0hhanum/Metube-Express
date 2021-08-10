@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 const videoSchema = new mongoose.Schema({
     // min max length 를 html 에만 해두면 사용자가 브라우저를 이용해 해당 옵션을 삭제할 수 있다.
     title: { type: String, required: true, trim: true, maxLength: 80 },
+    fileUrl: { type: String, required: true },
     description: { type: String, required: true, trim: true, minLength: 10 },
     createdAt: { type: Date, required: true, default: Date.now },
     hashtags: [{ type: String, trim: true }],

@@ -40,6 +40,7 @@ session != cookie (정보 교환 수단)
 */
 app.use(localsMiddleware);
 
+app.use("/uploads", express.static("uploads"));
 app.use("/", rootRouter);
 app.use("/videos", videoRouter);
 app.use("/users", userRouter);

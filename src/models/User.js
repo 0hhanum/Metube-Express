@@ -13,8 +13,12 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.pre("save", async function () {
-    this.password = await bcrypt.hash(this.password, 5);
+    // user 가 save 되면 실행. 아래 코드로 password 가 변경되었을 때만 Hash 를 실행
+    if (this.isModified("password")) {
+        this.password = await bcrypt.hash(this.password, 5);
+    }
 });
+
 const User = mongoose.model('User', userSchema);
 
 export default User;

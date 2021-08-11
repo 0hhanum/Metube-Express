@@ -6,8 +6,12 @@ block content
     video(src="/"+video.fileUrl, controls, width="70%")
     div
         p=video.description
+        small Uploaded by #{owner.name}
+        br
         small=video.createdAt
-    a(href=`${video.id}/edit`) 수정하기 &rarr;
-    br
-    a(href=`${video.id}/delete`) 삭제하기 
+    
+    if String(video.owner) === String(loggedInUser._id)
+        a(href=`${video.id}/edit`) 수정하기 &rarr;
+        br
+        a(href=`${video.id}/delete`) 삭제하기 &rarr;
     //- href 경로가 /로 시작하면 절대경로 그냥 시작하면 상대경로

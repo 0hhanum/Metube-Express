@@ -11,7 +11,8 @@ const videoSchema = new mongoose.Schema({
     meta: {
         views: { type: Number, default: 0, required: true },
         rating: { type: Number, default: 0, required: true },
-    }
+    },
+    owner: { type: mongoose.Schema.Types.ObjectId, required: true, ref: "User" }
 });
 
 // new => js 의 생성자. 파이썬 클래스의 init 처럼 객체를 반환해준다.

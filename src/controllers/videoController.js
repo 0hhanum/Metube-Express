@@ -1,5 +1,5 @@
 import Video from "../models/Video";
-
+import User from "../models/User";
 // export default 를 하면 한 모듈에서 하나의 변수를 export 하게 됨.
 // 위와 같은 방법으로 한 파일에서 여러 개를 export 할 수 있음
 
@@ -42,8 +42,9 @@ export const watch = async (req, res) => {
     if (!video) {
         return res.render("404", { pageTitle: "잘못된 접근입니다." });
     }
+    const owner = await User.findById(video.owner);
     return res.render("watch", {
-        pageTitle: video.title, video
+        pageTitle: video.title, video, owner
     });
 }
 
@@ -79,7 +80,9 @@ export const postEdit = async (req, res) => {
 export const getUpload = (req, res) => {
     return res.render("upload", { pageTitle: "Upload Video" });
 }
+
 export const postUpload = async (req, res) => {
+    const { user: { _id } } = req.session;
     const { path: fileUrl } = req.file;
     // req.file.path 를 fileUrl 이란 변수로 저장. ES6!
     const { title, description, hashtags } = req.body;
@@ -88,7 +91,8 @@ export const postUpload = async (req, res) => {
             title,
             description,
             fileUrl,
-            hashtags: Video.formatHashtags(hashtags)
+            hashtags: Video.formatHashtags(hashtags),
+            owner: _id
         });
         await video.save();
         return res.redirect("/");

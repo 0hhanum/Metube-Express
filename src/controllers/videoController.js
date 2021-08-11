@@ -51,12 +51,15 @@ export const watch = async (req, res) => {
 
 export const getEdit = async (req, res) => {
     const { id } = req.params
+    const { user: { _id } } = req.session;
     const video = await Video.findById(id);
 
     if (!video) {
         return res.status(404).render("404", { pageTitle: "잘못된 접근입니다." });
     }
-
+    if (String(video.owner) !== String(_id)) {
+        return res.status(403).redirect("/");
+    }
     return res.render("edit", {
         pageTitle: "수정하기", video
     });
@@ -64,18 +67,23 @@ export const getEdit = async (req, res) => {
 
 export const postEdit = async (req, res) => {
     const { id } = req.params;
+    const { user: { _id } } = req.session;
     const { title, description, hashtags } = req.body;
-    const exist = await Video.exists({ _id: id });
-    if (!exist) {
+    const video = await Video.findOne({ _id: id });
+    if (!video) {
         return res.status(404).render("404", { pageTitle: "잘못된 접근입니다." });
     }
     // post 내용 얻는법 => req.body, params 는 router 에서 지정한 url 내 변수.
+    if (String(video.owner) !== String(_id)) {
+        return res.status(403).redirect("/");
+    }
     await Video.findByIdAndUpdate(id, {
         title, description,
         hashtags: Video.formatHashtags(hashtags)
     });
     return res.redirect(`/videos/${id}`);
 };
+
 
 export const getUpload = (req, res) => {
     return res.render("upload", { pageTitle: "Upload Video" });
@@ -110,7 +118,19 @@ export const postUpload = async (req, res) => {
 
 export const deleteVideo = async (req, res) => {
     const { id } = req.params;
+    const { user: { _id } } = req.session;
+    const user = await User.findById(_id);
+    // 그냥 session 에서 찾아버리면 LogIn 당시 user 반환되므로 최신화 안되어있음.
+    const video = await Video.findOne({ _id: id });
+    if (!video) {
+        return res.status(404).render("404", { pageTitle: "잘못된 접근입니다." });
+    }
+    if (String(video.owner) !== String(user._id)) {
+        return res.status(403).redirect("/");
+    }
     await Video.findByIdAndDelete(id);
+    user.videos.splice(user.videos.indexOf(id), 1);
+    // user videos array 에서도 삭제
     return res.redirect("/")
 }
 

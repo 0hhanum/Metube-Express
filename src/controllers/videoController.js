@@ -37,14 +37,14 @@ export const home = async (req, res) => {
 
 export const watch = async (req, res) => {
     const { id } = req.params
-    const video = await Video.findById(id);
     // ES6 문법. const id = req.params.id 와 동일 
+    const video = await Video.findById(id).populate("owner");
+    // Video Schema 에서 owner 를 User 의 object_id 로 지정해줬기 때문에 populate 사용 가능. mongoose 기능.
     if (!video) {
         return res.render("404", { pageTitle: "잘못된 접근입니다." });
     }
-    const owner = await User.findById(video.owner);
     return res.render("watch", {
-        pageTitle: video.title, video, owner
+        pageTitle: video.title, video
     });
 }
 

@@ -6,11 +6,12 @@ block content
     video(src="/"+video.fileUrl, controls, width="70%")
     div
         p=video.description
-        small Uploaded by #{owner.name}
+        small Uploaded by 
+             a(href=`/users/${video.owner._id}`)  #{video.owner.name}
         br
         small=video.createdAt
     
-    if String(video.owner) === String(loggedInUser._id)
+    if String(video.owner._id) === String(loggedInUser._id)
         a(href=`${video.id}/edit`) 수정하기 &rarr;
         br
         a(href=`${video.id}/delete`) 삭제하기 &rarr;

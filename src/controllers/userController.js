@@ -1,6 +1,8 @@
+import User from "../models/User";
+import Video from "../models/Video";
+
 import bcrypt from "bcrypt";
 import fetch from "node-fetch";
-import User from "../models/User";
 
 export const getJoin = (req, res) => res.render("join", { pageTitle: "가입하기" });
 export const postJoin = async (req, res) => {
@@ -213,5 +215,8 @@ export const see = async (req, res) => {
     if (!user) {
         return res.status(404).render("404", { pageTitle: "존재하지 않는 사용자입니다." });
     }
-    return res.render("users/profile", { pageTitle: user.name, user });
+    const videos = await Video.find({
+        owner: id
+    });
+    return res.render("users/profile", { pageTitle: user.name, user, videos });
 };

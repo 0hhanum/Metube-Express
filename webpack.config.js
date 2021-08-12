@@ -4,6 +4,10 @@ const path = require("path");
 module.exports = {
     entry: "./src/client/js/main.js",
     mode: "development",
+    watch: true,
+    // nodemon 과 같이 npm run assets 가 종료되지 않음.
+    clean: true,
+    // output folder 를 한번 지우고 다시 생성.
     plugins: [
         new MiniCssExtractPlugin({
             filename: "css/styles.css",

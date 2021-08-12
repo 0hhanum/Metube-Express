@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/0hhanum/youandmetube-NodeJS#readme",
   "dependencies": {
+    "babel-loader": "^8.2.2",
     "bcrypt": "^5.0.1",
     "connect-mongo": "^4.4.1",
     "dotenv": "^10.0.0",

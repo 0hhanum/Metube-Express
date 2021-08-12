@@ -20,6 +20,11 @@ module.exports = {
                     },
                 },
             },
+            {
+                test: /\.scss/,
+                use: ["style-loader", "css-loader", "sass-loader"]
+                // 역순으로 loader 사용. sass->css, css 변환, css 적용
+            }
         ],
     },
 };

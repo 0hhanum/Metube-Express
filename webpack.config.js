@@ -1,12 +1,19 @@
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
 
 module.exports = {
     entry: "./src/client/js/main.js",
     mode: "development",
+    plugins: [
+        new MiniCssExtractPlugin({
+            filename: "css/styles.css",
+        }),
+        // client main.js 에서 css 를 분리해줌.
+    ],
     output: {
-        filename: "main.js",
+        filename: "js/main.js",
         path: "./assets/js",
-        path: path.resolve(__dirname, "assets", "js"),
+        path: path.resolve(__dirname, "assets"),
     },
     module: {
         rules: [
@@ -22,7 +29,7 @@ module.exports = {
             },
             {
                 test: /\.scss/,
-                use: ["style-loader", "css-loader", "sass-loader"]
+                use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
                 // 역순으로 loader 사용. sass->css, css 변환, css 적용
             }
         ],

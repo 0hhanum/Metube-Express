@@ -144,7 +144,7 @@ export const search = async (req, res) => {
             // 정규표현식으로 찾기. i 는 keyword를 대소문자 구분 없이 찾는 것을 의미
             // $regex 는 mongoDB 에서 지원. mongoose 는 이를 전달해준다.
 
-        })
+        }).populate("owner");
     }
     return res.render("search", { pageTitle: "Search", videos });
 }

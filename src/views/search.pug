@@ -3,13 +3,12 @@ include mixins/video
 
 
 block content 
-    form(method="GET")
-        input(placeholder="Search by title", type="text", name="keyword")
-        input(type="submit", value="SEARCH")
+    form(method="GET").search__form
+        input(placeholder="제목으로 검색하세요.", type="text", name="keyword")
 
     div.video-grid    
         each video in videos 
             +video(video)
         else 
-            span.empty__message 영상이 존재하지 않습니다 
+            span.empty__message 영상이 존재하지 않습니다.
             

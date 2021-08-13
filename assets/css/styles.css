@@ -80,8 +80,8 @@ header ul i {
   font-size: 18px;
 }
 header ul .header__btn {
-  background-color: #202220;
-  color: #517956;
+  background-color: #CDB377;
+  color: #202220;
   padding: 7px 10px;
   border-radius: 3px;
 }
@@ -117,7 +117,7 @@ footer {
   font-size: 24px;
   display: block;
   margin-top: 30px;
-  color: #202220;
+  color: #E8DBBD;
 }
 
 .video-grid {
@@ -125,6 +125,108 @@ footer {
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 50px;
   color: #202220;
+}
+
+.join-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.join-form .form__input {
+  width: 40%;
+  margin-bottom: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-left: 110px;
+}
+.join-form .form__submit {
+  width: 30%;
+  display: flex;
+}
+.join-form input[type=submit] {
+  background-color: #202220;
+  text-align: center;
+  cursor: pointer;
+  height: 320px;
+  width: 220px;
+  margin-bottom: 60px;
+  border-radius: 15px;
+  border-color: #CDB377;
+}
+.join-form input {
+  padding: 10px 25px;
+  width: 80%;
+  border-radius: 5px;
+  background-color: #6F5824;
+  margin: 5px;
+  margin-bottom: 8px;
+  color: #E8DBBD;
+  font-size: 16px;
+}
+.join-form input:focus {
+  outline: none;
+}
+.join-form input::placeholder {
+  color: #E8DBBD;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 200px 0;
+}
+.login-form input {
+  padding: 10px 25px;
+  width: 30%;
+  border-radius: 5px;
+  background-color: #6F5824;
+  margin: 5px;
+  margin-bottom: 8px;
+  color: #E8DBBD;
+  font-size: 16px;
+}
+.login-form input:focus {
+  outline: none;
+}
+.login-form input::placeholder {
+  color: #E8DBBD;
+}
+.login-form input[type=submit] {
+  background-color: #CDB377;
+  color: #202220;
+}
+
+.search__form {
+  display: flex;
+  flex-direction: column;
+  max-width: 420px;
+  margin: 0 auto;
+}
+.search__form input {
+  padding: 15px 25px;
+  border-radius: 5px;
+  background-color: #6F5824;
+  margin: 5px;
+  margin-bottom: 30px;
+  color: #E8DBBD;
+  font-size: 16px;
+}
+.search__form input:focus {
+  outline: none;
+}
+.search__form input::placeholder {
+  color: #E8DBBD;
+}
+.search__form input[type=submit] {
+  background-color: #202220;
+  text-align: center;
+  padding: 10px;
+  cursor: pointer;
 }
 
 a {

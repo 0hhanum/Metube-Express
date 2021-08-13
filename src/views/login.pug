@@ -3,12 +3,12 @@ extends base
 block content 
     if errorMessage 
         span=errorMessage
-    form(method="POST")
+    form(method="POST").login-form
         input(name="username", type="text",required, placeholder="아이디")
         input(name="password", type="password",required, placeholder="비밀번호")
         input(type="submit", value="로그인")
+        include partials/social-login
         br
-        a(href="/users/github/start") GitHub 로 계속하기 &rarr;
     hr
     div
         span 계정이 없으신가요?  

@@ -55,6 +55,78 @@ table {
   border-spacing: 0;
 }
 
+header {
+  padding: 20px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header .header__logo {
+  color: #CDB377;
+  font-size: 38px;
+}
+header ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header ul li {
+  margin-left: 25px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #CDB377;
+}
+header ul i {
+  font-size: 18px;
+}
+header ul .header__btn {
+  background-color: #202220;
+  color: #517956;
+  padding: 7px 10px;
+  border-radius: 3px;
+}
+
+footer {
+  text-align: center;
+  opacity: 0.7;
+  margin-top: 50px;
+  font-size: 16px;
+}
+
+.video-mixin .video-mixin__thumb {
+  height: 145px;
+  border-radius: 5px;
+  width: 100%;
+  background-color: #E8DBBD;
+}
+.video-mixin .video-mixin__data {
+  padding: 0px 15px;
+}
+.video-mixin .video-mixin__data .video-mixin__title {
+  font-size: 18px;
+  margin-top: 10px;
+  display: block;
+}
+.video-mixin .video-mixin__data .video-mixin__meta {
+  margin-top: 3px;
+  font-size: 13px;
+}
+
+.empty__message {
+  margin-bottom: 50px;
+  font-size: 24px;
+  display: block;
+  margin-top: 30px;
+  color: #202220;
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 50px;
+  color: #202220;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -62,6 +134,13 @@ a {
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  background-color: #618E66;
+  background-color: #517956;
   color: #E8DBBD;
+}
+
+main {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 50px;
 }

@@ -6,8 +6,10 @@ block content
     form(method="GET")
         input(placeholder="Search by title", type="text", name="keyword")
         input(type="submit", value="SEARCH")
-    
-    each video in videos 
-        +video(video)
 
-        
+    div.video-grid    
+        each video in videos 
+            +video(video)
+        else 
+            span.empty__message 영상이 존재하지 않습니다 
+            

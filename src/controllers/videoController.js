@@ -20,7 +20,7 @@ import User from "../models/User";
 
 export const home = async (req, res) => {
     try {
-        const videos = await Video.find({}).sort({ createdAt: "desc" });
+        const videos = await Video.find({}).sort({ createdAt: "desc" }).populate("owner");
         // callback 과 다른 async await 비동기 처리 js 의 promise.
         return res.render("home", { pageTitle: "Home", videos });
     } catch (error) {

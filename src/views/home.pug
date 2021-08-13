@@ -2,9 +2,16 @@ extends base
 include mixins/video
 
 block content
-    each video in videos
-        +video(video)
-        //- mixin 호출
-    else
-        li 영상이 존재하지 않습니다.
+    div.video-grid
+        each video in videos
+            +video(video)
+            +video(video)
+            +video(video)
+            +video(video)
+            +video(video)
+            +video(video)
+            //- mixin 호출
+        else
+            span.empty__message 영상이 존재하지 않습니다 
+            
 

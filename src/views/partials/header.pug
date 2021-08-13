@@ -1,15 +1,16 @@
 header
-    a(href="/")
+    a(href="/").header__logo
         i.fas.fa-hamburger
     nav 
         ul 
             li 
-                a(href="/search") SEARCH
+                a(href="/search")
+                    i.fas.fa-search
             if !loggedIn
                 li 
                     a(href="/join") JOIN
                 li 
-                    a(href="/login") LOGIN
+                    a(href="/login").header__btn LOGIN
             else 
                 li 
                     a(href="/videos/upload") UPLOAD

@@ -127,6 +127,12 @@ footer {
   color: #202220;
 }
 
+.avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+
 .social-login {
   font-size: 20px;
   margin-top: 10px;
@@ -207,6 +213,35 @@ footer {
   width: 35%;
 }
 
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.form input {
+  padding: 10px 25px;
+  width: 30%;
+  border-radius: 5px;
+  background-color: #6F5824;
+  margin: 5px;
+  margin-bottom: 8px;
+  color: #E8DBBD;
+  font-size: 16px;
+}
+.form input:focus {
+  outline: none;
+}
+.form input::placeholder {
+  color: #E8DBBD;
+}
+.form input[type=submit] {
+  background-color: #CDB377;
+  color: #202220;
+  width: 35%;
+}
+
 .search__form {
   display: flex;
   flex-direction: column;
@@ -237,6 +272,35 @@ footer {
 
 .join__box {
   margin-top: 100px;
+}
+
+.profile__data {
+  max-width: 420px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 50px;
+}
+.profile__data img {
+  margin-bottom: 10px;
+}
+.profile__data h3 {
+  margin-bottom: 18px;
+  font-size: 30px;
+}
+
+.change-password-link {
+  margin-top: 10px;
+  text-decoration: underline;
+}
+
+.edit-profile {
+  margin-top: 100px;
+}
+
+.change-password {
+  margin-top: 200px;
 }
 
 a {

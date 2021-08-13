@@ -1,8 +1,8 @@
 extends base.pug
 
 block content
-    h4 비디오 수정하기
-    form(method="POST")
+    form(method="POST").form
+        h4 비디오 정보 수정
         input(name="title", placeholder="제목을 입력하세요.", value=video.title, required, maxlength=80)
         input(name="description", placeholder="설명을 입력하세요.", value=video.description, required, minlength=10)
         input(name="hashtags", placeholder="해시태그(a, b, c, ...)", required, value=video.hashtags.join())

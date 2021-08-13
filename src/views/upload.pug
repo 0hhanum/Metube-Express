@@ -3,7 +3,7 @@ extends base
 block content
     if errorMessage 
         h1=errorMessage
-    form(method="POST", enctype="multipart/form-data")
+    form(method="POST", enctype="multipart/form-data").form
         label(for="video") 동영상 파일
         input(type="file", accept="video/*", required, id="video", name="video")
         input(name="title", placeholder="제목", required, type="text", maxlength=80)

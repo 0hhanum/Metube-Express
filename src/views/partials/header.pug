@@ -1,0 +1,21 @@
+header
+    a(href="/")
+        i.fas.fa-hamburger
+    nav 
+        ul 
+            li 
+                a(href="/search") SEARCH
+            if !loggedIn
+                li 
+                    a(href="/join") JOIN
+                li 
+                    a(href="/login") LOGIN
+            else 
+                li 
+                    a(href="/videos/upload") UPLOAD
+                li
+                    a(href=`/users/${loggedInUser._id}`) PROFILE
+                li
+                    a(href="/users/edit") EDIT
+                li
+                    a(href="/users/logout") LOGOUT

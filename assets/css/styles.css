@@ -127,6 +127,11 @@ footer {
   color: #202220;
 }
 
+.social-login {
+  font-size: 20px;
+  margin-top: 10px;
+}
+
 .join-form {
   display: flex;
   align-items: center;
@@ -199,6 +204,7 @@ footer {
 .login-form input[type=submit] {
   background-color: #CDB377;
   color: #202220;
+  width: 35%;
 }
 
 .search__form {
@@ -227,6 +233,10 @@ footer {
   text-align: center;
   padding: 10px;
   cursor: pointer;
+}
+
+.join__box {
+  margin-top: 100px;
 }
 
 a {

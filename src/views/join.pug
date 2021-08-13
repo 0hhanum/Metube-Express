@@ -3,17 +3,14 @@ extends base
 block content 
     if errorMessage 
         span=errorMessage
-    form(method="POST").join-form
-        div.form__input
-            input(name="name", type="text",required, placeholder="이름")
-            input(name="email", type="email",required, placeholder="이메일")
-            input(name="username", type="text",required, placeholder="아이디")
-            input(name="password", type="password",required, placeholder="비밀번호")
-            input(name="password2", type="password",required, placeholder="비밀번호 확인")
-            input(name="location", type="text",required, placeholder="지역")
-        div.form__submit
-            input(type="submit", value="가입하기")
-    hr
-    div
-        span 계정이 있으신가요?  
-        a(href="/login") 로그인 &rarr;
+    div.join__box    
+        form(method="POST").join-form
+            div.form__input
+                input(name="name", type="text",required, placeholder="이름")
+                input(name="email", type="email",required, placeholder="이메일")
+                input(name="username", type="text",required, placeholder="아이디")
+                input(name="password", type="password",required, placeholder="비밀번호")
+                input(name="password2", type="password",required, placeholder="비밀번호 확인")
+                input(name="location", type="text",required, placeholder="지역")
+            div.form__submit
+                input(type="submit", value="가입하기")

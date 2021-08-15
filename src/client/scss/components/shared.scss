@@ -18,3 +18,12 @@
     height: 150px;
     border-radius: 50%;
 }
+
+form{
+    label{
+        display: flex;
+        width: 32%;
+        justify-items: start;
+        margin-bottom: 5px;
+    }
+}

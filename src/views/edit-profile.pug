@@ -6,7 +6,7 @@ block content
     
     div.edit-profile
     form(method="POST", enctype="multipart/form-data").form
-        //- label(for="avatar") 프로필 사진
+        label(for="avatar").avatar-label 프로필 사진
         input(type="file", id="avatar", name="avatar", accept="image/*")
         input(name="name", type="text",required, value=loggedInUser.name, placeholder="이름")
         input(name="email", type="email",required, value=loggedInUser.email, placeholder="이메일")

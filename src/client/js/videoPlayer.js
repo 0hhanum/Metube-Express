@@ -7,8 +7,10 @@ const video = document.querySelector("video");
 const timeline = document.getElementById("timeline");
 const fullScreenBtn = document.getElementById("fullscreen");
 const videoContainer = document.getElementById("videoContainer");
+const videoControls = document.getElementById("videoControls");
 
-
+let controlsTimeOut = null;
+let controlsMovementTimeout = null;
 let volumeValue = 0.5;
 video.volume = volumeValue;
 
@@ -72,6 +74,29 @@ const handleFullScreen = () => {
     }
 }
 
+
+const hideControls = () => videoControls.classList.remove("showing");
+const handleMouseMove = () => {
+    if (controlsTimeOut) {
+        clearTimeout(controlsTimeOut);
+        controlsTimeOut = null;
+        // 나갔다 다시 들어와 timeout 이 실행되고 있다면 종료시킨다.
+    }
+    videoControls.classList.add("showing");
+    if (controlsMovementTimeout) {
+        clearTimeout(controlsMovementTimeout);
+        controlsMovementTimeout = null;
+    }
+    // 마우스가 플레이어 위에서 2000ms 동안 가만히 있으면 controls 를 없애는 코드 
+    controlsMovementTimeout = setTimeout(hideControls, 1000);
+
+}
+const handleMouseLeave = () => {
+    controlsTimeOut = setTimeout(hideControls, 500);
+    // 3000ms 후에 실행
+    // 마우스가 들어갔다 나왔다 다시 들어갔을 때 실행되고 있는 timeout 을 끄기 위한 변수
+}
+
 play.addEventListener("click", handlePlay);
 mute.addEventListener("click", handleMute);
 volumeRange.addEventListener("input", handleVolumeChange);
@@ -81,6 +106,9 @@ video.addEventListener("timeupdate", handleTimeUpdate);
 // 현재 비디오의 재생 구간이 변할 때마다 실행
 timeline.addEventListener("input", handleTimeline);
 fullScreenBtn.addEventListener("click", handleFullScreen);
+video.addEventListener("mousemove", handleMouseMove);
+video.addEventListener("mouseleave", handleMouseLeave);
+
 
 //////////////////////////////////////////////////////
 if (video.readyState == 4) {

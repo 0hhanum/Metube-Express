@@ -1,6 +1,7 @@
 /*!**********************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/client/scss/styles.scss ***!
   \**********************************************************************************************************************/
+@charset "UTF-8";
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -270,6 +271,103 @@ form label {
   background-color: #CDB377;
   color: #202220;
   width: 35%;
+}
+
+.container-box {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.videoControls__timeline {
+  -webkit-appearance: none;
+  background: #CDB377;
+  border-radius: 20px;
+  height: 10px;
+  outline: none;
+}
+.videoControls__timeline::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  /*기본 스타일을 사용할지 말지 정하기 */
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  outline: none;
+  border: none;
+  background: #517956;
+}
+
+#volume {
+  -webkit-appearance: none;
+  background: #517956;
+  border-radius: 20px;
+  height: 10px;
+  outline: none;
+}
+#volume::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  /*기본 스타일을 사용할지 말지 정하기 */
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  outline: none;
+  border: none;
+  background: #CDB377;
+}
+
+#videoContainer {
+  width: 80%;
+  position: relative;
+}
+#videoContainer video {
+  width: 100%;
+  border-radius: 50%;
+}
+#videoContainer .videoControls {
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+  color: #E8DBBD;
+  align-items: center;
+  border-radius: 10px;
+  position: absolute;
+  bottom: 10px;
+  width: 95%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 4fr auto;
+  gap: 10px;
+  justify-content: space-between;
+  background-color: #6F5824;
+  padding: 10px;
+  left: 0;
+  box-sizing: border-box;
+}
+#videoContainer .videoControls.showing {
+  opacity: 1;
+}
+#videoContainer .videoControls .videoControls__play {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+#videoContainer .videoControls .videoControls__play .videoControls__playBtn {
+  margin: 0px 15px;
+  font-size: 22px;
+}
+#videoContainer .videoControls .videoControls__play .videoControls__time {
+  font-size: 12px;
+}
+#videoContainer .videoControls .videoControls__volume {
+  display: flex;
+  align-items: center;
+}
+#videoContainer .videoControls .videoControls__volume span {
+  margin-left: 10px;
+}
+#videoContainer .videoControls .videoControls__volume span i {
+  font-size: 20px;
 }
 
 .search__form {

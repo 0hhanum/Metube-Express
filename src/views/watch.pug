@@ -3,20 +3,24 @@ extends base.pug
 block content
     //- h3 #{video.views} #{video.views === 1 ? "view" : "views" }
     //- inline if문
-    div#videoContainer
-        video(src="/"+video.fileUrl, width="70%")
-        div#videoControls
-            button#play Play
-            button#mute Mute
-            div 
-                span#currentTime 00:00
-                span  / 
-                span#totalTime 00:00
-            input(type="range", min=0, max=1, step=0.1, value=0.6)#volume
-            div 
-                input(type="range", min=0, step=0.2, value=0)#timeline
-            div 
-                button#fullscreen 전체화면
+    div.container-box
+        div#videoContainer
+            video(src="/"+video.fileUrl, width="70%")
+            div#videoControls.videoControls
+                div.videoControls__play
+                    span#play.videoControls__playBtn
+                        i.fas.fa-play
+                div.videoControls__time
+                    span#currentTime 00:00
+                    span  / 
+                    span#totalTime 00:00
+                input(type="range",step="0.2", value="0", min="0")#timeline.videoControls__timeline
+                div.videoControls__volume
+                    input(type="range",step="0.1", value=0.5, min="0", max="1")#volume
+                    span#mute
+                        i.fas.fa-volume-up
+                    span#fullScreen
+                        i.fas.fa-expand
 
     //- div
     //-     p=video.description

@@ -1,11 +1,14 @@
-const play = document.getElementById("play");
-const mute = document.getElementById("mute");
+const video = document.querySelector("video");
+const playBtn = document.getElementById("play");
+const playBtnIcon = playBtn.querySelector("i");
+const muteBtn = document.getElementById("mute");
+const muteBtnIcon = muteBtn.querySelector("i");
+const volumeRange = document.getElementById("volume");
 const currentTime = document.getElementById("currentTime");
 const totalTime = document.getElementById("totalTime");
-const volumeRange = document.getElementById("volume");
-const video = document.querySelector("video");
 const timeline = document.getElementById("timeline");
-const fullScreenBtn = document.getElementById("fullscreen");
+const fullScreenBtn = document.getElementById("fullScreen");
+const fullScreenIcon = fullScreenBtn.querySelector("i");
 const videoContainer = document.getElementById("videoContainer");
 const videoControls = document.getElementById("videoControls");
 
@@ -20,7 +23,7 @@ const handlePlay = (event) => {
     } else {
         video.pause();
     }
-    play.innerText = video.paused ? "play" : "pause";
+    playBtnIcon.classList = video.paused ? "fas fa-play" : "fas fa-hamburger fa-2xl";
 };
 
 const handleMute = (event) => {
@@ -32,14 +35,16 @@ const handleMute = (event) => {
         video.muted = true;
         volumeRange.value = 0;
     }
-    mute.innerText = video.muted ? "Unmute" : "Mute";
+    muteBtnIcon.classList = video.muted
+        ? "fas fa-volume-mute"
+        : "fas fa-volume-up";
 };
 
 const handleVolumeChange = (event) => {
     const { target: { value } } = event;
     if (video.muted) {
         video.muted = false;
-        mute.innerText = "Mute";
+        muteBtnIcon.classList = "fas fa-volume-up";
     }
     volumeValue = value;
     video.volume = volumeValue;
@@ -67,10 +72,10 @@ const handleFullScreen = () => {
 
     if (fullscreen) {
         document.exitFullscreen();
-        fullScreenBtn.innerText = "전체화면";
+        fullScreenIcon.classList = "fas fa-expand";
     } else {
         videoContainer.requestFullscreen();
-        fullScreenBtn.innerText = "나가기";
+        fullScreenIcon.classList = "fas fa-compress";
     }
 }
 
@@ -96,18 +101,17 @@ const handleMouseLeave = () => {
     // 3000ms 후에 실행
     // 마우스가 들어갔다 나왔다 다시 들어갔을 때 실행되고 있는 timeout 을 끄기 위한 변수
 }
-
-play.addEventListener("click", handlePlay);
-mute.addEventListener("click", handleMute);
+playBtn.addEventListener("click", handlePlay);
+muteBtn.addEventListener("click", handleMute);
 volumeRange.addEventListener("input", handleVolumeChange);
-video.addEventListener("loadedmetadata", handleLoadedMetadata);
+video.addEventListener("loadeddata", handleLoadedMetadata);
 // metaData 가 모두 load 되었을 때 실행
 video.addEventListener("timeupdate", handleTimeUpdate);
 // 현재 비디오의 재생 구간이 변할 때마다 실행
 timeline.addEventListener("input", handleTimeline);
 fullScreenBtn.addEventListener("click", handleFullScreen);
-video.addEventListener("mousemove", handleMouseMove);
-video.addEventListener("mouseleave", handleMouseLeave);
+videoContainer.addEventListener("mousemove", handleMouseMove);
+videoContainer.addEventListener("mouseleave", handleMouseLeave);
 
 
 //////////////////////////////////////////////////////

@@ -4,15 +4,24 @@ block content
     //- h3 #{video.views} #{video.views === 1 ? "view" : "views" }
     //- inline if문
     video(src="/"+video.fileUrl, controls, width="70%")
-    div
-        p=video.description
-        small Uploaded by 
-             a(href=`/users/${video.owner._id}`)  #{video.owner.name}
-        br
-        small=video.createdAt
+    div 
+        button#play Play
+        button#mute Mute
+        span#time --:--/--:--
+        input(type="range", min=0, max=1, step=0.2)#volume
+
+    //- div
+    //-     p=video.description
+    //-     small Uploaded by 
+    //-          a(href=`/users/${video.owner._id}`)  #{video.owner.name}
+    //-     br
+    //-     small=video.createdAt
     
-    if String(video.owner._id) === String(loggedInUser._id)
-        a(href=`${video.id}/edit`) 수정하기 &rarr;
-        br
-        a(href=`${video.id}/delete`) 삭제하기 &rarr;
+    //- if String(video.owner._id) === String(loggedInUser._id)
+    //-     a(href=`${video.id}/edit`) 수정하기 &rarr;
+    //-     br
+    //-     a(href=`${video.id}/delete`) 삭제하기 &rarr;
     //- href 경로가 /로 시작하면 절대경로 그냥 시작하면 상대경로
+
+block scripts 
+    script(src="/static/js/videoPlayer.js")

@@ -16,7 +16,7 @@
   \*******************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _scss_styles_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../scss/styles.scss */ \"./src/client/scss/styles.scss\");\n\nconsole.log(\"hello\");\n\n//# sourceURL=webpack://metube/./src/client/js/main.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _scss_styles_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../scss/styles.scss */ \"./src/client/scss/styles.scss\");\n // 이것 때문에 css 가 FE 에서 작동하는 게 아님. webpack 이 위 코드를 통해 css 파일을 읽고\n// extractPlugin 이 css 를 따로 추출해줌. 그 후 base.pug 에서 stylesheet 를 통해 import!\n\nconsole.log(\"hello\");\n\n//# sourceURL=webpack://metube/./src/client/js/main.js?");
 
 /***/ }),
 

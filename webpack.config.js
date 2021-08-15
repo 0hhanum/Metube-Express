@@ -2,7 +2,10 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
 
 module.exports = {
-    entry: "./src/client/js/main.js",
+    entry: {
+        main: "./src/client/js/main.js",
+        videoPlayer: "./src/client/js/videoPlayer.js"
+    },
     mode: "development",
     watch: true,
     // nodemon 과 같이 npm run assets 가 종료되지 않음.
@@ -13,10 +16,11 @@ module.exports = {
         // client main.js 에서 css 를 분리해줌.
     ],
     output: {
-        filename: "js/main.js",
+        filename: "js/[name].js",
+        // entry 별로 js 파일을 생성.
         path: path.resolve(__dirname, "assets"),
         clean: true,
-        // output folder 를 한번 지우고 다시 생성.  
+        // output folder 를 한번 지우고 다시 생성. (clean)  
     },
     module: {
         rules: [

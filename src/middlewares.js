@@ -27,9 +27,9 @@ export const publicOnlyMiddleware = (req, res, next) => {
 // multer 사용 위한 middleware configuration.
 // dest: "uploads/" => 사용자가 보낸 파일을 uploads 폴더에 저장.
 export const avatarUpload = multer({
-    dest: "uploads/avatars/", limits: { fileSize: 3000000 }
+    dest: "uploads/avatars/", limits: { fileSize: 30000000 }
 });
 export const videoUpload = multer({
-    dest: "uploads/videos/", limits: { fileSize: 10000000 }
+    dest: "uploads/videos/", limits: { fileSize: 100000000 }
 });
 // *** multer 사용 시에는 form 의 enctype 지정해주는 걸 잊지 말기 ***

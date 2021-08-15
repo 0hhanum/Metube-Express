@@ -39,12 +39,15 @@ const handleVolumeChange = (event) => {
     video.volume = volumeValue;
 }
 
+const formatTime = (seconds) => new Date(seconds * 1000).toISOString().substr(14, 5);
+// seconds 에 영상 길이를 넣으면 --:-- 형식의 date 객체를 반환하는 hack.
+
 const handleLoadedMetadata = () => {
-    totalTime.innerText = Math.floor(video.duration);
+    totalTime.innerText = formatTime(Math.floor(video.duration));
 };
 
 const handleTimeUpdate = () => {
-    currentTime.innerText = Math.floor(video.currentTime);
+    currentTime.innerText = formatTime(Math.floor(video.currentTime));
 }
 
 play.addEventListener("click", handlePlay);
@@ -54,6 +57,8 @@ video.addEventListener("loadedmetadata", handleLoadedMetadata);
 // metaData 가 모두 load 되었을 때 실행
 video.addEventListener("timeupdate", handleTimeUpdate);
 
+
+//////////////////////////////////////////////////////
 if (video.readyState == 4) {
     handleLoadedMetadata();
 }

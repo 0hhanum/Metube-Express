@@ -21,6 +21,18 @@
     height: 150px;
     border-radius: 50%;
 }
+.avatar-box{
+    background-color: $brown;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    span {
+        font-size: 45px;
+    }
+}
 
 form{
     label{

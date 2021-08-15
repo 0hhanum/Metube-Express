@@ -133,14 +133,11 @@ export const postEdit = async (req, res) => {
     const { session: { user, user: { _id, avatarUrl } },
         body: { name, email, username, location },
         file } = req;
-
     /*
     const userId = req.session.user._id 
     const { name, email, username, location } = req.body;
     와 동일. req.session 에서 user : _id 찾고, req.body 에서 수정한 정보 찾기.
     */
-    console.log(name);
-    console.log(user.name);
     if (name !== user.name) {
         console.log(123);
         const exists = await User.exists({ name });
@@ -214,7 +211,14 @@ export const postChangePassword = async (req, res) => {
 
 export const see = async (req, res) => {
     const { id } = req.params;
-    const user = await User.findById(id).populate("videos");
+    const user = await User.findById(id).populate({
+        path: "videos",
+        populate: {
+            path: "owner",
+            model: "User"
+        }
+    });
+    // Double populate => videos 에 대해 populate 후 owner 얻기위해 다시 populate
     if (!user) {
         return res.status(404).render("404", { pageTitle: "존재하지 않는 사용자입니다." });
     }

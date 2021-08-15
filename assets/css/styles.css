@@ -136,6 +136,19 @@ footer {
   border-radius: 50%;
 }
 
+.avatar-box {
+  background-color: #6F5824;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.avatar-box span {
+  font-size: 45px;
+}
+
 form label {
   display: flex;
   width: 32%;
@@ -306,6 +319,9 @@ form label {
 .profile__data h3 {
   margin-bottom: 18px;
   font-size: 30px;
+}
+.profile__data .avatar-box {
+  margin-bottom: 13px;
 }
 
 .change-password-link {

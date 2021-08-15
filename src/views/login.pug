@@ -2,7 +2,7 @@ extends base
 
 block content 
     if errorMessage 
-        span=errorMessage
+        span.error-message=errorMessage
     form(method="POST").login-form
         input(name="username", type="text",required, placeholder="아이디")
         input(name="password", type="password",required, placeholder="비밀번호")

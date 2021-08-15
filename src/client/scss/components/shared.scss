@@ -11,6 +11,9 @@
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 50px;
     color: $black;
+    span{
+        color: $white;
+    }
 }
 
 .avatar{
@@ -26,4 +29,11 @@ form{
         justify-items: start;
         margin-bottom: 5px;
     }
+}
+
+.error-message{
+    color: $white;
+    font-size: 30px;
+    display: block;
+    text-align: center;
 }

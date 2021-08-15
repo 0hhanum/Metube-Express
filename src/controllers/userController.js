@@ -139,10 +139,13 @@ export const postEdit = async (req, res) => {
     const { name, email, username, location } = req.body;
     와 동일. req.session 에서 user : _id 찾고, req.body 에서 수정한 정보 찾기.
     */
-
+    console.log(name);
+    console.log(user.name);
     if (name !== user.name) {
+        console.log(123);
         const exists = await User.exists({ name });
         if (exists) {
+            console.log(23);
             return res.render("edit-profile", { pageTitle: "수정하기", errorMessage: "이미 존재하는 이름입니다." });
         }
     }
@@ -178,7 +181,7 @@ export const postEdit = async (req, res) => {
     */
 
     req.session.user = updatedUser;
-    return res.redirect("edit");
+    return res.redirect(`/users/${updatedUser.id}`);
 };
 
 export const getChangePassword = (req, res) => {

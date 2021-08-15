@@ -5,6 +5,8 @@ const totalTime = document.getElementById("totalTime");
 const volumeRange = document.getElementById("volume");
 const video = document.querySelector("video");
 const timeline = document.getElementById("timeline");
+const fullScreenBtn = document.getElementById("fullscreen");
+const videoContainer = document.getElementById("videoContainer");
 
 
 let volumeValue = 0.5;
@@ -58,6 +60,18 @@ const handleTimeline = (event) => {
     video.currentTime = event.target.value;
 }
 
+const handleFullScreen = () => {
+    const fullscreen = document.fullscreenElement;
+
+    if (fullscreen) {
+        document.exitFullscreen();
+        fullScreenBtn.innerText = "전체화면";
+    } else {
+        videoContainer.requestFullscreen();
+        fullScreenBtn.innerText = "나가기";
+    }
+}
+
 play.addEventListener("click", handlePlay);
 mute.addEventListener("click", handleMute);
 volumeRange.addEventListener("input", handleVolumeChange);
@@ -66,7 +80,7 @@ video.addEventListener("loadedmetadata", handleLoadedMetadata);
 video.addEventListener("timeupdate", handleTimeUpdate);
 // 현재 비디오의 재생 구간이 변할 때마다 실행
 timeline.addEventListener("input", handleTimeline);
-
+fullScreenBtn.addEventListener("click", handleFullScreen);
 
 //////////////////////////////////////////////////////
 if (video.readyState == 4) {

@@ -93,14 +93,24 @@ const handleMouseMove = () => {
         controlsMovementTimeout = null;
     }
     // 마우스가 플레이어 위에서 2000ms 동안 가만히 있으면 controls 를 없애는 코드 
-    controlsMovementTimeout = setTimeout(hideControls, 1000);
+    controlsMovementTimeout = setTimeout(hideControls, 1200);
 
 }
 const handleMouseLeave = () => {
-    controlsTimeOut = setTimeout(hideControls, 500);
+    controlsTimeOut = setTimeout(hideControls, 1000);
     // 3000ms 후에 실행
     // 마우스가 들어갔다 나왔다 다시 들어갔을 때 실행되고 있는 timeout 을 끄기 위한 변수
 }
+
+const handleKeydown = (event) => {
+    if (event.key === " ") {
+        handlePlay();
+    }
+    if (event.key === "m") {
+        handleMute();
+    }
+}
+
 playBtn.addEventListener("click", handlePlay);
 muteBtn.addEventListener("click", handleMute);
 volumeRange.addEventListener("input", handleVolumeChange);
@@ -112,6 +122,8 @@ timeline.addEventListener("input", handleTimeline);
 fullScreenBtn.addEventListener("click", handleFullScreen);
 videoContainer.addEventListener("mousemove", handleMouseMove);
 videoContainer.addEventListener("mouseleave", handleMouseLeave);
+document.addEventListener("keydown", handleKeydown);
+video.addEventListener("click", handlePlay);
 
 
 //////////////////////////////////////////////////////

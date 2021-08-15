@@ -3,7 +3,7 @@ extends base.pug
 block content
     //- h3 #{video.views} #{video.views === 1 ? "view" : "views" }
     //- inline if문
-    video(src="/"+video.fileUrl, controls, width="70%")
+    video(src="/"+video.fileUrl, width="70%")
     div 
         button#play Play
         button#mute Mute
@@ -11,7 +11,9 @@ block content
             span#currentTime 00:00
             span  / 
             span#totalTime 00:00
-        input(type="range", min=0, max=1, step=0.2, value=0.6)#volume
+        input(type="range", min=0, max=1, step=0.1, value=0.6)#volume
+        div 
+            input(type="range", min=0, step=0.2, value=0)#timeline
 
     //- div
     //-     p=video.description

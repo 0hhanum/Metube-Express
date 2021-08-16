@@ -454,6 +454,10 @@ form label {
   margin-top: 140px;
 }
 
+#preview {
+  border-radius: 50%;
+}
+
 a {
   color: inherit;
   text-decoration: none;

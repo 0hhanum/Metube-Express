@@ -111,6 +111,15 @@ const handleKeydown = (event) => {
     }
 }
 
+
+const handleEnded = () => {
+    const { videoId } = videoContainer.dataset;
+    fetch(`/api/videos/${videoId}/view`, {
+        method: "POST",
+    });
+}
+
+////////////////////////////////////////////
 playBtn.addEventListener("click", handlePlay);
 muteBtn.addEventListener("click", handleMute);
 volumeRange.addEventListener("input", handleVolumeChange);
@@ -124,10 +133,10 @@ videoContainer.addEventListener("mousemove", handleMouseMove);
 videoContainer.addEventListener("mouseleave", handleMouseLeave);
 document.addEventListener("keydown", handleKeydown);
 video.addEventListener("click", handlePlay);
-
+video.addEventListener("ended", handleEnded);
 
 //////////////////////////////////////////////////////
-if (video.readyState == 4) {
+if (video.readyState === 4) {
     handleLoadedMetadata();
 }
 // eventListener 가 추가되기 전에 video 가 모두 로딩되어 실행이 안될 수 있음.Math

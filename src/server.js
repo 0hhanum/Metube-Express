@@ -8,6 +8,7 @@ import { localsMiddleware } from "./middlewares";
 import rootRouter from "./routers/rootRouter";
 import videoRouter from "./routers/videoRouter";
 import userRouter from "./routers/userRouter";
+import apiRouter from "./routers/apiRouter";
 
 // babel 이용해 최신문법 적용, import 뒤는 모듈이 default export 인 경우 이름 상관없음 (python as 와 유사)
 // const express = require("express");
@@ -47,6 +48,7 @@ app.use("/static", express.static("assets"));
 app.use("/", rootRouter);
 app.use("/videos", videoRouter);
 app.use("/users", userRouter);
+app.use("/api", apiRouter);
 // Router 설정
 
 export default app;

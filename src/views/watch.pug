@@ -4,7 +4,7 @@ block content
     //- h3 #{video.views} #{video.views === 1 ? "view" : "views" }
     //- inline if문
     div.container-box
-        div#videoContainer
+        div#videoContainer(data-videoId=video._id)
             video(src="/"+video.fileUrl, width="70%")
             div#videoControls.videoControls
                 div.videoControls__play

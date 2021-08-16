@@ -1,0 +1,10 @@
+extends base
+
+block content
+    if errorMessage 
+        span.error-message=errorMessage
+    div 
+        button#startBtn 녹화 시작
+
+block scripts 
+    script(src="/static/js/recorder.js")

@@ -160,3 +160,7 @@ export const registerView = async (req, res) => {
     await video.save();
     return res.sendStatus(200);
 }
+
+export const recorder = (req, res) => {
+    res.render("record");
+}

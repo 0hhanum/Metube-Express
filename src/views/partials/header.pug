@@ -5,8 +5,10 @@ header
     nav  
         ul 
             li 
+                a(href="/videos/record").record
+                    i.fas.fa-video.fa-3xl
                 a(href="/search")
-                    i.fas.fa-search 
+                    i.fas.fa-search
             if !loggedIn
                 li 
                     a(href="/join") JOIN

@@ -23,6 +23,7 @@ const init = async () => {
 
 const handleDownload = async () => {
     // 원래는 FFmpeg 를 BE 즉, 서버에서 돌려야함. 지금 하는 건 사용자의 브라우저를 이용해 FE 에서 사용하려 함.
+    alert("시간이 걸리니 가만히 기다리세요.");
     const ffmpeg = createFFmpeg({
         log: true,
         corePath: "/ffmpeg/ffmpeg-core.js"
@@ -32,9 +33,15 @@ const handleDownload = async () => {
     // ffmpeg 가상공간에  fetchFile 을 이용해 "recording.webm" File 을 생성.
     await ffmpeg.run("-i", "recording.webm", "-r", "60", "output.mp4");
     // "recording.webm" 파일을 -input 하고 60 frame/sec 로 인코딩.
+    const ConvertedMP4 = ffmpeg.FS("readFile", "output.mp4");
+    // 인코딩된 파일을 ffmpeg 가상 공간에서 filesystem FS 를 이용해 가져옴. 
+    // 이는 숫자로만 이루어진 data(Unit8Array) 이기 때문에 File 로 변환해줘야함. blob 이용.
+    const mp4Blob = new Blob([ConvertedMP4.buffer], { type: "video/mp4" });
+
+    const mp4Url = URL.createObjectURL(mp4Blob);
     const a = document.createElement("a");
-    a.href = videoFile;
-    a.download = "MyRecording.webm";
+    a.href = mp4Url;
+    a.download = "MyRecording.mp4";
     document.body.appendChild(a);
     a.click();
 };

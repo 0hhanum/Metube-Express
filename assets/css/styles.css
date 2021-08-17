@@ -488,6 +488,9 @@ button {
   font-weight: 100;
   -webkit-transform: scaleY(1.5) skew(10deg, 0deg);
 }
+.notice.hide {
+  display: none;
+}
 
 .notice1 {
   left: 20px;

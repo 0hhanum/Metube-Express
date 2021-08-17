@@ -26,6 +26,9 @@ button{
     font-size: 500px;
     font-weight: 100;
     -webkit-transform: scaleY(1.5) skew(10deg, 00deg);
+    &.hide{
+        display: none;
+    }
 }
 
 .notice1{

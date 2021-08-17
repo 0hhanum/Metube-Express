@@ -33,9 +33,10 @@
 
 • User sign up, login
 
-• Record video, download it
+• Record video, download it (It transcoded by FFmpeg.wasm)
 
 • Create custom video player
 
 • Social login using OAUTH
+
 

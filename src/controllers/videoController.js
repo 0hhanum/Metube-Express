@@ -1,5 +1,6 @@
 import Video from "../models/Video";
 import User from "../models/User";
+import { createFFmpeg } from "@ffmpeg/ffmpeg";
 // export default 를 하면 한 모듈에서 하나의 변수를 export 하게 됨.
 // 위와 같은 방법으로 한 파일에서 여러 개를 export 할 수 있음
 
@@ -162,6 +163,7 @@ export const registerView = async (req, res) => {
 }
 
 export const recorder = (req, res) => {
+    // ffmpeg.wasm error 잡기 위한 코드
     res.header("Cross-Origin-Embedder-Policy", "require-corp");
     res.header("Cross-Origin-Opener-Policy", "same-origin");
     return res.render("record");

@@ -1,11 +1,14 @@
-## NodeJS practice project 🕹
+# NodeJS practice project 🕹
 
 
-# Using...
+## Using...
 
 • Express (NodeJS web app framework)
+
 • Pug (template engine)
+
 • babel (Compile ES6 JS)
+
 • nodemon (node monitor)
 • mongo (DB)
 • mongoose (Library for mongo - nodeJS)
@@ -16,7 +19,7 @@
 • FFmpeg (translate .webm video to .mp4) by webassembly
 
 
-# Features
+## Features
 
 • CRUD video
 • User sign up, login

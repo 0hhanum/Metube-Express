@@ -3,6 +3,9 @@ import { createFFmpeg, fetchFile } from "@ffmpeg/ffmpeg";
 const startBtn = document.getElementById("startBtn");
 const downloadBtn = document.getElementById("downloadBtn");
 const video = document.getElementById("preview");
+const notices = document.getElementsByClassName("notice");
+const waiting = document.getElementById("waiting");
+
 
 // FE 에서 async await 를 사용하려면 regeneratorRuntime 설치해야함.
 // client/main.js 에서 import 했음. =>  base.pug 에서 scripts 로 받아오고 있음.
@@ -24,6 +27,10 @@ const init = async () => {
 const handleDownload = async () => {
     // 원래는 FFmpeg 를 BE 즉, 서버에서 돌려야함. 지금 하는 건 사용자의 브라우저를 이용해 FE 에서 사용하려 함.
     alert("시간이 걸리니 가만히 기다리세요.");
+    for (const notice of notices) {
+        notice.classList.add("hide");
+    }
+    waiting.className = "showing";
     const ffmpeg = createFFmpeg({
         log: true,
         corePath: "/ffmpeg/ffmpeg-core.js"
@@ -58,6 +65,10 @@ const handleStop = () => {
 }
 
 const handleStart = () => {
+    for (const notice of notices) {
+        notice.classList.remove("hide");
+    }
+    waiting.className = "";
     startBtn.innerText = "녹화 중지";
     startBtn.removeEventListener("click", handleStart);
     startBtn.addEventListener("click", handleStop);

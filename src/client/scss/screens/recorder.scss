@@ -37,4 +37,41 @@ button{
 .notice2{
     right: 20px;
 }
+@-webkit-keyframes rotate {
+    0%, 100% {
+    }
+    50% {
+      transform: rotate(180deg);
+    }
+  }
+  
+  @keyframes rotate {
+    0%, 100% {
+    }
+    50% {
+    transform: rotate(180deg);
+    }
+  }
+#waiting{
+    display: none;
+    &.showing{
+        display: block;
+        z-index: 3;
+        color: $green;
+        position: absolute;
+        font-size: 500px;
+        font-weight: 100;
+        -webkit-transform: scaleY(1.5) skew(10deg, 00deg);
+        
+        -webkit-animation-delay: 0s;
+        animation-delay: 0s;
+        -webkit-animation-duration: 3s;
+        animation-duration: 3s;
+        -webkit-animation-name: rotate;
+        animation-name: rotate;
+        -webkit-animation-iteration-count: infinite;
+        animation-iteration-count: infinite;
+
+    }
+}
 

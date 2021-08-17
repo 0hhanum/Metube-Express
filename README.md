@@ -19,7 +19,7 @@
 
 • webpack (Bundle all module (FE js, scss))
 
-• sass (sassy CSS)
+• sass
 
 • multar (manage static)
 

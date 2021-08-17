@@ -500,6 +500,37 @@ button {
   right: 20px;
 }
 
+@-webkit-keyframes rotate {
+  50% {
+    transform: rotate(180deg);
+  }
+}
+@keyframes rotate {
+  50% {
+    transform: rotate(180deg);
+  }
+}
+#waiting {
+  display: none;
+}
+#waiting.showing {
+  display: block;
+  z-index: 3;
+  color: #517956;
+  position: absolute;
+  font-size: 500px;
+  font-weight: 100;
+  -webkit-transform: scaleY(1.5) skew(10deg, 0deg);
+  -webkit-animation-delay: 0s;
+  animation-delay: 0s;
+  -webkit-animation-duration: 3s;
+  animation-duration: 3s;
+  -webkit-animation-name: rotate;
+  animation-name: rotate;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+
 a {
   color: inherit;
   text-decoration: none;

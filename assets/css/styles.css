@@ -458,6 +458,13 @@ form label {
   border-radius: 50%;
 }
 
+#downloadBtn {
+  display: none;
+}
+#downloadBtn.showing {
+  display: inline;
+}
+
 a {
   color: inherit;
   text-decoration: none;

@@ -1,3 +1,10 @@
 #preview{
     border-radius: 50%;
 }
+
+#downloadBtn{
+    &.showing{
+        display: inline;
+    }
+    display: none;
+}

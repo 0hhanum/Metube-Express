@@ -13,7 +13,7 @@
 • webpack (Bundle all module (FE js, scss))
 • sass (sassy CSS)
 • multar (manage static)
-• WEBASSEMBLY & FFmpeg (translate .webm video to .mp4)
+• FFmpeg (translate .webm video to .mp4) by webassembly
 
 
 # Features

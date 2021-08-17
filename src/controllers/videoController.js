@@ -162,5 +162,7 @@ export const registerView = async (req, res) => {
 }
 
 export const recorder = (req, res) => {
-    res.render("record");
+    res.header("Cross-Origin-Embedder-Policy", "require-corp");
+    res.header("Cross-Origin-Opener-Policy", "same-origin");
+    return res.render("record");
 }

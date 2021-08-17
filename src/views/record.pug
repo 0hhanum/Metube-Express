@@ -3,10 +3,13 @@ extends base
 block content
     if errorMessage 
         span.error-message=errorMessage
-    div 
+    div.recorder-box 
         video#preview
         button#startBtn 녹화 시작
         button#downloadBtn 다운로드
+        span.notice.notice1 10
+        span.notice.notice2 초
+
 
 block scripts 
     script(src="/static/js/recorder.js")

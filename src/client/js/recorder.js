@@ -26,6 +26,8 @@ const handleDownload = () => {
     document.body.appendChild(a);
     a.click();
 };
+// HTML anchor 를 이용해 다운로드하기. webm 은 확장자.
+// a 에 "download" property 를 부여하면 해당 링크는 어디로 향하는 게 아니라 download 가 됨.
 
 
 const handleStop = () => {

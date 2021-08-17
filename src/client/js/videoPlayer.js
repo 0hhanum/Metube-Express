@@ -1,3 +1,5 @@
+const { async } = require("regenerator-runtime");
+
 const video = document.querySelector("video");
 const playBtn = document.getElementById("play");
 const playBtnIcon = playBtn.querySelector("i");
@@ -53,7 +55,18 @@ const handleVolumeChange = (event) => {
 const formatTime = (seconds) => new Date(seconds * 1000).toISOString().substr(14, 5);
 // seconds 에 영상 길이를 넣으면 --:-- 형식의 date 객체를 반환하는 hack.
 
-const handleLoadedMetadata = () => {
+const handleLoadedMetadata = async () => {
+    await video.readyState === 4;
+    if (video.duration == Infinity) {
+        video.currentTime = 1e101;
+        video.ontimeupdate = function () {
+            this.ontimeupdate = () => {
+                return;
+            }
+            video.currentTime = 0;
+            return;
+        }
+    }
     totalTime.innerText = formatTime(Math.floor(video.duration));
     timeline.max = Math.floor(video.duration);
 };

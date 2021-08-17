@@ -1,5 +1,7 @@
 #preview{
     border-radius: 50%;
+    width: 70%;
+    margin-top: -50px;
 }
 
 #downloadBtn{
@@ -8,3 +10,28 @@
     }
     display: none;
 }
+button{
+    z-index: 10;
+}
+.recorder-box{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.notice{
+    z-index: 3;
+    color: tomato;
+    position: absolute;
+    display: block;
+    font-size: 500px;
+    font-weight: 100;
+    -webkit-transform: scaleY(1.5) skew(10deg, 00deg);
+}
+
+.notice1{
+    left: 20px;
+}
+.notice2{
+    right: 20px;
+}
+

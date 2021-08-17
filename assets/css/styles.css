@@ -65,6 +65,7 @@ header {
 header .header__logo {
   color: #CDB377;
   font-size: 38px;
+  z-index: 10;
 }
 header ul {
   display: flex;
@@ -76,6 +77,7 @@ header ul li {
   font-size: 15px;
   font-weight: 600;
   color: #CDB377;
+  z-index: 10;
 }
 header ul i {
   font-size: 18px;
@@ -456,6 +458,8 @@ form label {
 
 #preview {
   border-radius: 50%;
+  width: 70%;
+  margin-top: -50px;
 }
 
 #downloadBtn {
@@ -463,6 +467,34 @@ form label {
 }
 #downloadBtn.showing {
   display: inline;
+}
+
+button {
+  z-index: 10;
+}
+
+.recorder-box {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.notice {
+  z-index: 3;
+  color: tomato;
+  position: absolute;
+  display: block;
+  font-size: 500px;
+  font-weight: 100;
+  -webkit-transform: scaleY(1.5) skew(10deg, 0deg);
+}
+
+.notice1 {
+  left: 20px;
+}
+
+.notice2 {
+  right: 20px;
 }
 
 a {

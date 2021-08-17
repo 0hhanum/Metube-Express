@@ -1,22 +1,26 @@
 ## NodeJS practice project 🕹
 
 
-# Global Router
+# Using...
 
-/ 
-/join 
-/login 
-/search 
+• Express (NodeJS web app framework)
+• Pug (template engine)
+• babel (Compile ES6 JS)
+• nodemon (node monitor)
+• mongo (DB)
+• mongoose (Library for mongo - nodeJS)
+• bcrypt (for hash user password)
+• webpack (Bundle all module (FE js, scss))
+• sass (sassy CSS)
+• multar (manage static)
+• WEBASSEMBLY & FFmpeg (translate .webm video to .mp4)
 
-# User Router
 
-/users/:id 
-/users/logout
-/users/edit
-/users/delete
+# Features
 
-# Video Router
-/videos/:id 
-/videos/upload 
-/videos/:id/edit 
-/videos/:id/delete 
+• CRUD video
+• User sign up, login
+• Record video, download it
+• Create custom video player
+• Social login using OAUTH
+

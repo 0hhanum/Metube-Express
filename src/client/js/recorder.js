@@ -58,15 +58,23 @@ const handleDownload = async () => {
     a.download = "MyRecording.mp4";
     document.body.appendChild(a);
     a.click();
+    // HTML anchor 를 이용해 다운로드하기. webm 은 확장자.
+    // a 에 "download" property 를 부여하면 해당 링크는 어디로 향하는 게 아니라 download 가 됨.
 
     const thumbA = document.createElement("a");
     thumbA.href = thumbUrl;
     thumbA.download = "MyThumbnail.jpg";
     document.body.appendChild(thumbA);
     thumbA.click();
+
+    ffmpeg.FS("unlink", "recording.webm");
+    ffmpeg.FS("unlink", "output.mp4");
+    ffmpeg.FS("unlink", "thumbnail.jpg");
+    URL.revokeObjectURL(thumbUrl);
+    URL.revokeObjectURL(mp4Url);
+    URL.revokeObjectURL(videoFile);
+    // 브라우저 속도를 위해 ffmpeg 이용해 만든 메모리 내의 가상 url 및 파일을 삭제.
 };
-// HTML anchor 를 이용해 다운로드하기. webm 은 확장자.
-// a 에 "download" property 를 부여하면 해당 링크는 어디로 향하는 게 아니라 download 가 됨.
 
 
 const handleStop = () => {

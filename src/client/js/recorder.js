@@ -40,17 +40,30 @@ const handleDownload = async () => {
     // ffmpeg 가상공간에  fetchFile 을 이용해 "recording.webm" File 을 생성.
     await ffmpeg.run("-i", "recording.webm", "-r", "60", "output.mp4");
     // "recording.webm" 파일을 -input 하고 60 frame/sec 로 인코딩.
+    await ffmpeg.run("-i", "recording.webm", "-ss", "00:00:01", "-frames:v", "1", "thumbnail.jpg");
+    // -ss 커맨드는 영상의 특정 시점으로 이동, -frames:v, 1 => 1 프레임의 스크린샷 저장
     const ConvertedMP4 = ffmpeg.FS("readFile", "output.mp4");
+    const thumbFile = ffmpeg.FS("readFile", "thumbnail.jpg");
     // 인코딩된 파일을 ffmpeg 가상 공간에서 filesystem FS 를 이용해 가져옴. 
-    // 이는 숫자로만 이루어진 data(Unit8Array) 이기 때문에 File 로 변환해줘야함. blob 이용.
+
     const mp4Blob = new Blob([ConvertedMP4.buffer], { type: "video/mp4" });
+    const thumbBlob = new Blob([thumbFile.buffer], { type: "image/jpg" });
+    // 이는 숫자로만 이루어진 data(Unit8Array) 이기 때문에 File 로 변환해줘야함. blob 이용.
 
     const mp4Url = URL.createObjectURL(mp4Blob);
+    const thumbUrl = URL.createObjectURL(thumbBlob);
+
     const a = document.createElement("a");
     a.href = mp4Url;
     a.download = "MyRecording.mp4";
     document.body.appendChild(a);
     a.click();
+
+    const thumbA = document.createElement("a");
+    thumbA.href = thumbUrl;
+    thumbA.download = "MyThumbnail.jpg";
+    document.body.appendChild(thumbA);
+    thumbA.click();
 };
 // HTML anchor 를 이용해 다운로드하기. webm 은 확장자.
 // a 에 "download" property 를 부여하면 해당 링크는 어디로 향하는 게 아니라 download 가 됨.

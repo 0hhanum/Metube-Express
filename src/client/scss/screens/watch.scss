@@ -91,3 +91,27 @@
     }
   }
 
+  .watch__info{
+    writing-mode: vertical-rl;
+    position: absolute;
+    top: 280px;
+    left: 80px;
+    font-size: 40px;
+    font-weight: lighter;
+    color: $white;
+    small{
+      color: tomato;
+      a{
+        color: $white;
+      }
+    }
+  }
+  .watch__link{
+    writing-mode: vertical-rl;
+    position: absolute;
+    top: 280px;
+    right: 80px;
+    font-size: 40px;
+    font-weight: lighter;
+    color:$white;
+  }

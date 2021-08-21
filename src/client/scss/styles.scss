@@ -9,9 +9,9 @@
 @import "./components/shared.scss";
 @import "./components/social-login.scss";
 @import "./components/forms.scss";
-@import "./components/video-player.scss";
 
 // Screens
+@import "./screens/watch.scss";
 @import "./screens/search.scss";
 @import "./screens/join.scss";
 @import "./screens/profile.scss";
@@ -41,12 +41,15 @@ main{
 }
 
 @keyframes goAway{
-    from{
+    0%{
         transform: none;
+        opacity: 0;
+    }
+    20%{
         opacity: 1;
     }
-    to {
-        transform: translateY(-200px);
+    100% {
+        transform: translateY(-20px);
         opacity: 0;
     }
 }
@@ -58,13 +61,12 @@ main{
     right:0;
     margin: 0 auto;
     max-width: 200px;
-    padding: 20px 80px;
-    border-radius: 8px;
+    padding: 17px 80px;
+    border-radius: 80px;
     text-align: center;
     font-size: 24px;
     font-weight: lighter;
-    animation: goAway .5s ease-in-out forwards;
-    animation-delay: 1.5s;
+    animation: goAway 3s ease-in-out forwards;
     &.error{
         background-color: tomato;
         color: $white;

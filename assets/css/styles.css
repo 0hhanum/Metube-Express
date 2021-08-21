@@ -380,6 +380,32 @@ form label {
   font-size: 20px;
 }
 
+.watch__info {
+  writing-mode: vertical-rl;
+  position: absolute;
+  top: 280px;
+  left: 80px;
+  font-size: 40px;
+  font-weight: lighter;
+  color: #E8DBBD;
+}
+.watch__info small {
+  color: tomato;
+}
+.watch__info small a {
+  color: #E8DBBD;
+}
+
+.watch__link {
+  writing-mode: vertical-rl;
+  position: absolute;
+  top: 280px;
+  right: 80px;
+  font-size: 40px;
+  font-weight: lighter;
+  color: #E8DBBD;
+}
+
 .search__form {
   display: flex;
   flex-direction: column;
@@ -551,12 +577,15 @@ main {
 }
 
 @keyframes goAway {
-  from {
+  0% {
     transform: none;
+    opacity: 0;
+  }
+  20% {
     opacity: 1;
   }
-  to {
-    transform: translateY(-200px);
+  100% {
+    transform: translateY(-20px);
     opacity: 0;
   }
 }
@@ -567,13 +596,12 @@ main {
   right: 0;
   margin: 0 auto;
   max-width: 200px;
-  padding: 20px 80px;
-  border-radius: 8px;
+  padding: 17px 80px;
+  border-radius: 80px;
   text-align: center;
   font-size: 24px;
   font-weight: lighter;
-  animation: goAway 0.5s ease-in-out forwards;
-  animation-delay: 1.5s;
+  animation: goAway 3s ease-in-out forwards;
 }
 .message.error {
   background-color: tomato;

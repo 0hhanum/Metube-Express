@@ -15,7 +15,7 @@
   \*****************************************/
 /***/ (() => {
 
-eval("var videoContainer = document.getElementById(\"videoContainer\");\nvar form = document.getElementById(\"commentForm\");\nvar textarea = form.querySelector(\"textarea\");\nvar btn = form.querySelector(\"button\");\n\nvar handleSubmit = function handleSubmit(e) {\n  e.preventDefault();\n  var text = textarea.value;\n  var video = videoContainer.dataset.videoid;\n};\n\nform.addEventListener(\"submit\", handleSubmit);\n\n//# sourceURL=webpack://metube/./src/client/js/commentSection.js?");
+eval("var videoContainer = document.getElementById(\"videoContainer\");\nvar form = document.getElementById(\"commentForm\");\nvar textarea = form.querySelector(\"textarea\");\n\nvar handleSubmit = function handleSubmit(e) {\n  e.preventDefault();\n  var text = textarea.value;\n  var video = videoContainer.dataset.videoid;\n};\n\nform.addEventListener(\"submit\", handleSubmit);\n\n//# sourceURL=webpack://metube/./src/client/js/commentSection.js?");
 
 /***/ })
 

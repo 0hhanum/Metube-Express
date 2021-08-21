@@ -6,8 +6,10 @@ block content
     form(method="POST", enctype="multipart/form-data").form.upload-form
         label(for="video") 동영상 파일
         input(type="file", accept="video/*", required, id="video", name="video")
+        label(for="thumb") 썸네일
+        input(type="file", accept="image/*", required, id="thumb", name="thumb")
         input(name="title", placeholder="제목", required, type="text", maxlength=80)
-        input(name="description", placeholder="내용", required, type="text", minlength=10)
+        input(name="description", placeholder="내용", required, type="text", minlength=5)
         input(name="hashtags", placeholder="해시태그 (A, B, ...)", required, type="text")
         input(type="submit", value="등록")
 

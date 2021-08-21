@@ -1,6 +1,6 @@
 import Video from "../models/Video";
 import User from "../models/User";
-import { createFFmpeg } from "@ffmpeg/ffmpeg";
+
 // export default 를 하면 한 모듈에서 하나의 변수를 export 하게 됨.
 // 위와 같은 방법으로 한 파일에서 여러 개를 export 할 수 있음
 
@@ -92,14 +92,16 @@ export const getUpload = (req, res) => {
 
 export const postUpload = async (req, res) => {
     const { user: { _id } } = req.session;
-    const { path: fileUrl } = req.file;
-    // req.file.path 를 fileUrl 이란 변수로 저장. ES6!
+    const { video: videoFile, thumb } = req.files;
+    // req.files.video 를 videoFile 이란 변수로 저장. ES6!
     const { title, description, hashtags } = req.body;
+
     try {
         const video = new Video({
             title,
             description,
-            fileUrl,
+            fileUrl: videoFile[0].path,
+            thumbUrl: thumb[0].path,
             hashtags: Video.formatHashtags(hashtags),
             owner: _id
         });

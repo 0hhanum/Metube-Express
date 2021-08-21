@@ -71,8 +71,8 @@ const handleDownload = async () => {
     const mp4Url = URL.createObjectURL(mp4Blob);
     const thumbUrl = URL.createObjectURL(thumbBlob);
 
-    downloadFile(mp4Url, "MyRecording.mp4")
-    downloadFile(thumbUrl, "MyThumbnail.jpg")
+    downloadFile(mp4Url, "MyRecording.mp4");
+    downloadFile(thumbUrl, "MyThumbnail.jpg");
 
     ffmpeg.FS("unlink", files.input);
     ffmpeg.FS("unlink", files.output);
@@ -104,7 +104,7 @@ const handleStart = () => {
     startBtn.removeEventListener("click", handleStart);
     startBtn.addEventListener("click", handleStop);
     init();
-    recorder = new MediaRecorder(stream);
+    recorder = new MediaRecorder(stream, { mimeType: "video/webm" });
     recorder.ondataavailable = (event) => {
         videoFile = URL.createObjectURL(event.data);
         // 이 url 은 브라우저 메모리에만 존재. 실제로는 X
@@ -119,7 +119,7 @@ const handleStart = () => {
     recorder.start();
     setTimeout(() => {
         recorder.stop();
-    }, 10000);
+    }, 8000);
 }
 
 

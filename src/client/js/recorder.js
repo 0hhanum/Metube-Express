@@ -74,6 +74,16 @@ const handleDownload = async () => {
     downloadFile(mp4Url, "MyRecording.mp4");
     downloadFile(thumbUrl, "MyThumbnail.jpg");
 
+    // await fetch("/videos/upload", {
+    //     method: "POST",
+    //     header: {},
+    //     body: {
+    //         video: mp4Url,
+    //         thumb: thumbUrl,
+    //         description: "즉석 녹화됨",
+    //         hashtags: "shorts",
+    //     }
+    // })
     ffmpeg.FS("unlink", files.input);
     ffmpeg.FS("unlink", files.output);
     ffmpeg.FS("unlink", files.thumb);

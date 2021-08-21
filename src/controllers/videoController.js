@@ -172,5 +172,10 @@ export const recorder = (req, res) => {
     // ffmpeg.wasm error 잡기 위한 코드
     res.header("Cross-Origin-Embedder-Policy", "require-corp");
     res.header("Cross-Origin-Opener-Policy", "same-origin");
+    req.flash("info", "화면이 나올 때까지 기다리세요");
     return res.render("record");
+}
+
+export const createComment = (req, res) => {
+    res.end();
 }

@@ -24,6 +24,10 @@ app.set("views", process.cwd() + "/src/views");
 
 app.use(express.urlencoded({ extended: true }))
 // express app 이 form 을 이해할 수 있도록 하는 Middleware
+// app.use(express.text());
+// fetch 로 text 를 body 에 실어 보낼때 BE가 이를 이해하게 해줌.
+app.use(express.json());
+// json 문자열을 받아 다시 js object 형태로 변환해줌.
 
 app.use(session({
     secret: process.env.COOKIE_SECRET,

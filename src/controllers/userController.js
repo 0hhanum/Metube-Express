@@ -18,6 +18,7 @@ export const postJoin = async (req, res) => {
     }
     try {
         await User.create({ email, username, password, name, location });
+        req.flash("info", "생성 완료!");
         res.redirect("/login");
     } catch (error) {
         console.log(error);
@@ -43,11 +44,15 @@ export const postLogin = async (req, res) => {
     }
     req.session.loggedIn = true;
     req.session.user = user;
+    req.flash("info", "환영합니다!");
     return res.redirect("/");
 };
 
 export const logout = (req, res) => {
-    req.session.destroy();
+    // req.session.destroy() 이렇게 하면 flash 가 세션에 접근 못함
+    req.session.loggedIn = false;
+    req.session.user = null;
+    req.flash("info", "Have a good day!");
     return res.redirect("/");
 };
 
@@ -119,8 +124,10 @@ export const finishGithubLogin = async (req, res) => {
         }
         req.session.loggedIn = true;
         req.session.user = user;
+        req.flash("info", "환영합니다!");
         return res.redirect("/");
     } else {
+        req.flash("error", "다시 시도해 주세요.");
         return res.redirect("/login");
     }
 };
@@ -139,10 +146,8 @@ export const postEdit = async (req, res) => {
     와 동일. req.session 에서 user : _id 찾고, req.body 에서 수정한 정보 찾기.
     */
     if (name !== user.name) {
-        console.log(123);
         const exists = await User.exists({ name });
         if (exists) {
-            console.log(23);
             return res.render("edit-profile", { pageTitle: "수정하기", errorMessage: "이미 존재하는 이름입니다." });
         }
     }
@@ -178,11 +183,13 @@ export const postEdit = async (req, res) => {
     */
 
     req.session.user = updatedUser;
+    req.flash("info", "변경 완료!");
     return res.redirect(`/users/${updatedUser.id}`);
 };
 
 export const getChangePassword = (req, res) => {
     if (req.session.user.socialOnly) {
+        req.flash("error", "잘못된 접근입니다.");
         return res.redirect("/");
     }
     return res.render("users/change-password", { pageTitle: "비밀번호 변경" });
@@ -205,7 +212,7 @@ export const postChangePassword = async (req, res) => {
 
     user.password = newPassword;
     await user.save();
-
+    req.flash("info", "변경 완료!");
     return res.redirect("/users/logout");
 }
 

@@ -39,3 +39,38 @@ main{
     margin: 0 auto;
     margin-top: 50px;
 }
+
+@keyframes goAway{
+    from{
+        transform: none;
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-200px);
+        opacity: 0;
+    }
+}
+
+.message{
+    position:absolute;
+    top: 50px;
+    left:0;
+    right:0;
+    margin: 0 auto;
+    max-width: 200px;
+    padding: 20px 80px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: lighter;
+    animation: goAway .5s ease-in-out forwards;
+    animation-delay: 1.5s;
+    &.error{
+        background-color: tomato;
+        color: $white;
+    }
+    &.info{
+        background-color: $white;
+        color: green;
+    }
+}

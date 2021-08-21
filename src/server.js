@@ -1,6 +1,7 @@
 import express from "express";
 import morgan from "morgan";
 import session from "express-session";
+import flash from "express-flash";
 import MongoStore from "connect-mongo";
 // session DB 와 mongoDB 를 연결해줌.
 
@@ -39,6 +40,9 @@ express-session 은 쿠키에 session ID 를 넣어서 브라우저로 전송하
 쿠키를 함께 보냄. 따라서 서버에서 쿠키 내의 session ID 를 통해 session DB 에서 현재 사용자를 찾을 수 있음.
 session != cookie (정보 교환 수단)
 */
+app.use(flash());
+// req.flash 를 사용할 수 있게 됨.
+// req.flash(정보, 내용) 을 준 뒤 redirect 하면 locals에 메세지가 남아 template 에서 사용 가능.
 app.use(localsMiddleware);
 
 app.use("/uploads", express.static("uploads"));

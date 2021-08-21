@@ -59,6 +59,7 @@ export const getEdit = async (req, res) => {
         return res.status(404).render("404", { pageTitle: "잘못된 접근입니다." });
     }
     if (String(video.owner) !== String(_id)) {
+        req.flash("error", "잘못된 접근입니다.");
         return res.status(403).redirect("/");
     }
     return res.render("edit", {
@@ -76,6 +77,7 @@ export const postEdit = async (req, res) => {
     }
     // post 내용 얻는법 => req.body, params 는 router 에서 지정한 url 내 변수.
     if (String(video.owner) !== String(_id)) {
+        req.flash("error", "잘못된 접근입니다.");
         return res.status(403).redirect("/");
     }
     await Video.findByIdAndUpdate(id, {
@@ -109,6 +111,7 @@ export const postUpload = async (req, res) => {
         const user = await User.findById(_id);
         user.videos.push(video._id);
         user.save();
+        req.flash("info", "업로드 완료!");
         return res.redirect("/");
     } catch (error) {
         console.log(error);
@@ -129,6 +132,7 @@ export const deleteVideo = async (req, res) => {
         return res.status(404).render("404", { pageTitle: "잘못된 접근입니다." });
     }
     if (String(video.owner) !== String(user._id)) {
+        req.flash("error", "잘못된 접근입니다.");
         return res.status(403).redirect("/");
     }
     await Video.findByIdAndDelete(id);

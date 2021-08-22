@@ -416,7 +416,6 @@ form label {
 .video__comments .video__comment {
   color: #E8DBBD;
   font-weight: lighter;
-  font-size: 30px;
   padding: 10px;
   text-align: center;
   width: 100%;
@@ -424,6 +423,9 @@ form label {
 .video__comments .video__comment span {
   margin-left: 20px;
   font-size: 17px;
+}
+.video__comments .video__comment .comment__text {
+  font-size: 30px;
 }
 
 .video__add-comments form button {

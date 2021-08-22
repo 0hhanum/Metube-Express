@@ -43,11 +43,13 @@ block content
         ul 
             each comment in video.comments.reverse()
                 if comment.owner
-                    li.video__comment #{comment.text}
+                    li.video__comment 
+                        span.comment__text #{comment.text}
                         span #{comment.owner.name} 
                     
                 else 
-                    li.video__comment #{comment.text}
+                    li.video__comment 
+                        span.comment__text #{comment.text}
                         span 익명
 
 block scripts 

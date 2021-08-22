@@ -125,13 +125,15 @@
     .video__comment{
       color: $white;
       font-weight: lighter;
-      font-size: 30px;
       padding: 10px;
       text-align: center;
       width: 100%;
       span{
         margin-left: 20px;
         font-size: 17px;
+      }
+      .comment__text{
+      font-size: 30px;
       }
     }
   }

@@ -1,15 +1,17 @@
+const { async } = require("regenerator-runtime");
+
 const videoContainer = document.getElementById("videoContainer");
 const form = document.getElementById("commentForm");
 const textarea = form.querySelector("textarea");
 
-const handleSubmit = (e) => {
+const handleSubmit = async (e) => {
     e.preventDefault();
     const text = textarea.value;
     const videoId = videoContainer.dataset.videoid;
     if (text === "") {
         return
     };
-    fetch(`/api/videos/${videoId}/comments`, {
+    await fetch(`/api/videos/${videoId}/comments`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -20,6 +22,7 @@ const handleSubmit = (e) => {
     // 헤더에 json 보낸다 명시 -> server.js 에서 json() 사용했기에 req.body 에서 js object 로 parse 된 object 사용 가능.
     textarea.value = "";
 }
+
 
 const handleKeydown = (event) => {
     if (event.key === "Enter") {

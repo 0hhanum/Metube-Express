@@ -122,8 +122,11 @@
     max-width: 320px;
     width: 100%;
     margin: 0 auto;
+    margin-top: 20px;
     .video__comment{
       color: $white;
       font-weight: lighter;
+      padding: 10px;
+      text-align: center;
     }
   }

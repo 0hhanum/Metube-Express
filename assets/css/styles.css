@@ -412,10 +412,13 @@ form label {
   max-width: 320px;
   width: 100%;
   margin: 0 auto;
+  margin-top: 20px;
 }
 .video__comments .video__comment {
   color: #E8DBBD;
   font-weight: lighter;
+  padding: 10px;
+  text-align: center;
 }
 
 .search__form {

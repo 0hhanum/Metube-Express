@@ -409,16 +409,26 @@ form label {
 .video__comments {
   display: flex;
   flex-direction: column;
-  max-width: 320px;
   width: 100%;
   margin: 0 auto;
-  margin-top: 20px;
+  margin-top: -20px;
 }
 .video__comments .video__comment {
   color: #E8DBBD;
   font-weight: lighter;
+  font-size: 30px;
   padding: 10px;
   text-align: center;
+  width: 100%;
+}
+.video__comments .video__comment span {
+  margin-left: 20px;
+  font-size: 17px;
+}
+
+.video__add-comments form button {
+  display: block;
+  margin-bottom: 10px;
 }
 
 .search__form {

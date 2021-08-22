@@ -42,7 +42,14 @@ block content
     div.video__comments
         ul 
             each comment in video.comments.reverse()
-                li.video__comment=comment.text
+                if comment.owner
+                    li.video__comment #{comment.text}
+                        span #{comment.owner.name} 
+                    
+                else 
+                    li.video__comment #{comment.text}
+                        span 익명
+
 block scripts 
     script(src="/static/js/videoPlayer.js")
     script(src="/static/js/commentSection.js")

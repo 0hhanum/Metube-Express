@@ -146,3 +146,34 @@
   }
 }
 }
+.video__add-comments{
+  justify-content: center;
+  display: flex;
+  form{
+    display: flex; 
+    textarea{
+      background-color: $black;
+      color: $beige;
+      outline: none;
+      padding: 40px;
+      border-radius: 50%;
+      &::-moz-placeholder {
+        color: $beige;
+        padding: 0 20px;
+      }
+      &:-ms-input-placeholder {
+        color: $beige;
+        padding: 0 20px;
+      }
+      &::-webkit-input-placeholder {
+        color: $beige;
+        padding: 0 20px;
+      }
+      &::placeholder {
+        color: $beige;
+        padding: 0 20px;
+      }
+    }
+  }
+  margin: 30px;
+}

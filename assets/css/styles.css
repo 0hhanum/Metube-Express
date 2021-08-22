@@ -433,6 +433,38 @@ form label {
   margin-bottom: 10px;
 }
 
+.video__add-comments {
+  justify-content: center;
+  display: flex;
+  margin: 30px;
+}
+.video__add-comments form {
+  display: flex;
+}
+.video__add-comments form textarea {
+  background-color: #202220;
+  color: #CDB377;
+  outline: none;
+  padding: 40px;
+  border-radius: 50%;
+}
+.video__add-comments form textarea::-moz-placeholder {
+  color: #CDB377;
+  padding: 0 20px;
+}
+.video__add-comments form textarea:-ms-input-placeholder {
+  color: #CDB377;
+  padding: 0 20px;
+}
+.video__add-comments form textarea::-webkit-input-placeholder {
+  color: #CDB377;
+  padding: 0 20px;
+}
+.video__add-comments form textarea::placeholder {
+  color: #CDB377;
+  padding: 0 20px;
+}
+
 .search__form {
   display: flex;
   flex-direction: column;

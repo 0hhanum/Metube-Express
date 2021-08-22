@@ -37,8 +37,7 @@ block content
     //- href 경로가 /로 시작하면 절대경로 그냥 시작하면 상대경로
     div.video__add-comments 
         form.video__comment-form#commentForm
-            textarea(cols="30", rows="10", placeholder="댓글을 입력하세용")
-            button 등록
+            textarea(cols="70", rows="1", placeholder="댓글을 입력하세용")
     div.video__comments
         ul 
             each comment in video.comments.reverse()

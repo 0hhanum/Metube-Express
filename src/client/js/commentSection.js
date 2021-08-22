@@ -38,5 +38,12 @@ const handleSubmit = async (e) => {
     };
 }
 
+const handleKeydown = (e) => {
+    if (e.key == "Enter") {
+        e.preventDefault();
+        handleSubmit(e);
+    }
+}
 
 form.addEventListener("submit", handleSubmit);
+form.addEventListener("keypress", handleKeydown);

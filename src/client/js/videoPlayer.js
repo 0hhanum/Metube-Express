@@ -118,6 +118,7 @@ const handleMouseLeave = () => {
 const handleKeydown = (event) => {
     if (event.target !== textarea) {
         if (event.key === " ") {
+            event.preventDefault();
             handlePlay();
         }
         if (event.key === "m") {

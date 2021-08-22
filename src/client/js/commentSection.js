@@ -16,8 +16,15 @@ const handleSubmit = (e) => {
         },
         body: JSON.stringify({ text })
     });
-    // 서버는 js object 이해할 수 없음. json 문자열로 변경 후 전송.
-    // 헤더에 json 보낸다 명시 -> server.js 에서 json() 사용했기에 다시 js object 로 parse 해줌.
+    // 서버는 js object 이해할 수 없음. stringify 이용해 json 문자열로 변경 후 전송
+    // 헤더에 json 보낸다 명시 -> server.js 에서 json() 사용했기에 req.body 에서 js object 로 parse 된 object 사용 가능.
+    textarea.value = "";
 }
 
+const handleKeydown = (event) => {
+    if (event.key === "Enter") {
+        handleSubmit(event);
+    };
+};
 form.addEventListener("submit", handleSubmit);
+form.addEventListener("keydown", handleKeydown);

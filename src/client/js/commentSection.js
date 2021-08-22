@@ -1,6 +1,9 @@
 const videoContainer = document.getElementById("videoContainer");
+const containerBox = document.getElementsByClassName("container-box")[0];
 const form = document.getElementById("commentForm");
 const textarea = form.querySelector("textarea");
+
+const user = containerBox.dataset.username;
 
 const addComment = (text) => {
     const videoComments = document.querySelector(".video__comments ul");
@@ -8,7 +11,11 @@ const addComment = (text) => {
     const commentOwner = document.createElement("span");
     const commentText = document.createElement("span");
     commentText.innerText = text;
-    commentOwner.innerText = "익명";
+    if (user) {
+        commentOwner.innerText = user;
+    } else {
+        commentOwner.innerText = "익명";
+    }
     newComment.appendChild(commentText);
     newComment.appendChild(commentOwner);
     newComment.className = "video__comment";

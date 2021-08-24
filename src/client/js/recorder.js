@@ -74,27 +74,42 @@ const handleDownload = async () => {
     downloadFile(mp4Url, "MyRecording.mp4");
     downloadFile(thumbUrl, "MyThumbnail.jpg");
 
-    var form = document.createElement("form");
-    form.setAttribute("charset", "UTF-8");
-    form.setAttribute("method", "Post");
-    form.setAttribute("action", "/videos/upload");
-    var hiddenField = document.createElement("input");
-    hiddenField.setAttribute("type", "hidden");
-    hiddenField.setAttribute("name", "videoFile");
-    hiddenField.setAttribute("value", mp4Url);
-    form.appendChild(hiddenField);
-    hiddenField = document.createElement("input");
-    hiddenField.setAttribute("type", "hidden");
-    hiddenField.setAttribute("name", "thumbFile");
-    hiddenField.setAttribute("value", thumbUrl);
-    form.appendChild(hiddenField);
-    document.body.appendChild(form);
-    form.submit();
-    await fetch("/videos/upload", {
+    const form = new FormData();
+    form.enctype = "multipart/form-data";
+    form.append("videoUrl", mp4Url);
+    form.append("title", "인스턴트 비디오");
+    form.append("description", "즉석 비디오");
+    form.append("thumbUrl", thumbUrl);
+    form.append("hashtags", "TESTING");
+
+    await fetch("/api/videos/upload", {
         method: "POST",
-        headers: { "Content-Type": "multipart/form-data; boundary=—-WebKitFormBoundaryfgtsKTYLsT7PNUVD" },
-        body: file
-    })
+        headers: {
+            "Content-Type": "multipart/form-data",
+        },
+        body: form
+    });
+    // var form = document.createElement("form");
+    // form.setAttribute("charset", "UTF-8");
+    // form.setAttribute("method", "Post");
+    // form.setAttribute("action", "/videos/upload");
+    // var hiddenField = document.createElement("input");
+    // hiddenField.setAttribute("type", "hidden");
+    // hiddenField.setAttribute("name", "videoFile");
+    // hiddenField.setAttribute("value", mp4Url);
+    // form.appendChild(hiddenField);
+    // hiddenField = document.createElement("input");
+    // hiddenField.setAttribute("type", "hidden");
+    // hiddenField.setAttribute("name", "thumbFile");
+    // hiddenField.setAttribute("value", thumbUrl);
+    // form.appendChild(hiddenField);
+    // document.body.appendChild(form);
+    // form.submit();
+    // await fetch("/videos/upload", {
+    //     method: "POST",
+    //     headers: { "Content-Type": "multipart/form-data; boundary=—-WebKitFormBoundaryfgtsKTYLsT7PNUVD" },
+    //     body: file
+    // })
     ffmpeg.FS("unlink", files.input);
     ffmpeg.FS("unlink", files.output);
     ffmpeg.FS("unlink", files.thumb);

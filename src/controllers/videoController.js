@@ -98,6 +98,19 @@ export const getUpload = (req, res) => {
     return res.render("upload", { pageTitle: "Upload Video" });
 }
 
+export const postFormRecorder = async (req, res) => {
+    console.log(req.body);
+    const { user: { _id } } = req.session;
+    const { videoUrl, thumbUrl } = req.files;
+    const { title, description, hashtags } = req.body;
+    console.log(_id);
+    console.log(videoUrl,
+        thumbUrl,
+        title,
+        description,
+        hashtags);
+}
+
 export const postUpload = async (req, res) => {
     const { user: { _id } } = req.session;
     const { video: videoFile, thumb } = req.files;

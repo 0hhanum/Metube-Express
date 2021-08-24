@@ -40,4 +40,4 @@
 
 • Social login using OAUTH
 
-
+• Fake realtime comments using VanilaJS

@@ -424,6 +424,10 @@ form label {
   margin-left: 20px;
   font-size: 17px;
 }
+.video__comments .video__comment span.del {
+  margin-top: 15px;
+  font-size: 13px;
+}
 .video__comments .video__comment .comment__text {
   font-size: 30px;
 }

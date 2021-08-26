@@ -42,10 +42,11 @@ block content
         ul 
             each comment in video.comments.reverse()
                 if comment.owner
-                    li.video__comment 
+                    li.video__comment(data-commentId=comment._id)
                         span.comment__text #{comment.text}
                         span #{comment.owner.name} 
-                    
+                        if String(comment.owner._id) === String(loggedInUser._id)
+                            span.del 삭제
                 else 
                     li.video__comment 
                         span.comment__text #{comment.text}

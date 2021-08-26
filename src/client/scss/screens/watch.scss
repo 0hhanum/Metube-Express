@@ -131,6 +131,10 @@
       span{
         margin-left: 20px;
         font-size: 17px;
+        &.del{
+          margin-top: 15px;
+          font-size: 13px;
+        }
       }
       .comment__text{
       font-size: 30px;

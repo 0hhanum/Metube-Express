@@ -82,7 +82,7 @@ const handleDownload = async () => {
     form.append("thumbUrl", thumbBlob, "thumb.jpg");
     form.append("hashtags", "TESTING");
 
-    await fetch("/api/videos/upload", {
+    const { status } = await fetch("/api/videos/upload", {
         method: "POST",
         headers: {
             // "Content-Type": "multipart/form-data",
@@ -117,8 +117,11 @@ const handleDownload = async () => {
     URL.revokeObjectURL(mp4Url);
     URL.revokeObjectURL(videoFile);
     // 브라우저 속도를 위해 ffmpeg 이용해 만든 메모리 내의 가상 url 및 파일을 삭제.
-};
+    if (status === 201) {
+        location.replace("/");
+    };
 
+};
 
 const handleStop = () => {
     startBtn.innerText = "다시 녹화";

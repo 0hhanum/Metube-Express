@@ -117,13 +117,10 @@ export const postFormRecorder = async (req, res) => {
         user.videos.push(video._id);
         user.save();
         req.flash("info", "업로드 완료!");
-        return res.redirect("/");
+        return res.sendStatus(201);
     } catch (error) {
         console.log(error);
-        return res.status(400).render("upload", {
-            pageTitle: "Upload Video",
-            errorMessage: error._message
-        });
+        return res.sendStatus(404);
     };
 };
 

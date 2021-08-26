@@ -235,6 +235,7 @@ export const deleteVideo = async (req, res) => {
     await Video.findByIdAndDelete(id);
     user.videos.splice(user.videos.indexOf(id), 1);
     // user videos array 에서도 삭제
+    user.save();
     return res.redirect("/")
 }
 
@@ -298,3 +299,18 @@ export const createComment = async (req, res) => {
 
     return res.status(201).json({ newCommentId: comment._id });
 }
+
+export const delComment = async (req, res) => {
+    const { session: { user }, body: { commentId } } = req;
+    const comment = await Comment.findById(commentId).populate("owner");
+    if (!user || !commentId || !comment) {
+        return res.status(404).render("404", { pageTitle: "잘못된 접근입니다." });
+    }
+
+    if (String(user._id) !== String(comment.owner._id)) {
+        req.flash("error", "잘못된 접근입니다.");
+        return res.status(403).redirect("/");
+    }
+    await Comment.findByIdAndDelete(commentId);
+    return res.sendStatus(200);
+};

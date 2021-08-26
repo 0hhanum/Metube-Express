@@ -2,7 +2,6 @@ const videoContainer = document.getElementById("videoContainer");
 const containerBox = document.getElementsByClassName("container-box")[0];
 const form = document.getElementById("commentForm");
 const textarea = form.querySelector("textarea");
-const commentBox = document.getElementsByClassName("video__comment");
 const delBtns = document.getElementsByClassName("del");
 
 const user = containerBox.dataset.username;
@@ -57,9 +56,19 @@ const handleKeydown = (e) => {
     }
 }
 
-const handleDelete = (e) => {
-    const commentId = e.target.parentElement.dataset.commentid;
+const handleDelete = async (e) => {
+    const commentBox = e.target.parentElement;
+    const commentId = commentBox.dataset.commentid;
+    const response = await fetch("/api/del-comment", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ commentId })
+    });
 
+    if (response.status === 200) {
+        console.log(commentBox);
+        commentBox.remove();
+    };
 };
 
 form.addEventListener("submit", handleSubmit);

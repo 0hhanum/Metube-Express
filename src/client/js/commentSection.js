@@ -9,17 +9,24 @@ const user = containerBox.dataset.username;
 const addComment = (text, id) => {
     const videoComments = document.querySelector(".video__comments ul");
     const newComment = document.createElement("li");
-    newComment.dataset.id = id;
+    newComment.dataset.commentid = id;
     const commentOwner = document.createElement("span");
     const commentText = document.createElement("span");
+    let delBtn;
     commentText.innerText = text;
     if (user) {
         commentOwner.innerText = user;
+        delBtn = document.createElement("span");
+        delBtn.innerText = "삭제";
+        delBtn.className = "del";
+        delBtn.addEventListener("click", handleDelete);
+
     } else {
         commentOwner.innerText = "익명";
     }
     newComment.appendChild(commentText);
     newComment.appendChild(commentOwner);
+    newComment.appendChild(delBtn);
     newComment.className = "video__comment";
     commentText.className = "comment__text"
     videoComments.prepend(newComment);

@@ -76,10 +76,10 @@ const handleDownload = async () => {
 
     const form = new FormData();
     form.enctype = "multipart/form-data";
-    form.append("videoUrl", mp4Url);
+    form.append("videoUrl", mp4Blob, "video.mp4");
     form.append("title", "인스턴트 비디오");
     form.append("description", "즉석 비디오");
-    form.append("thumbUrl", thumbUrl);
+    form.append("thumbUrl", thumbBlob, "thumb.jpg");
     form.append("hashtags", "TESTING");
 
     await fetch("/api/videos/upload", {

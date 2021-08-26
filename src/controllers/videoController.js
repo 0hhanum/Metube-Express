@@ -100,14 +100,15 @@ export const getUpload = (req, res) => {
 
 export const postFormRecorder = async (req, res) => {
     const { user: { _id } } = req.session;
-    // const { videoUrl, thumbUrl } = req.files;
-    const { title, description, hashtags, videoUrl, thumbUrl } = req.body;
+    const { videoUrl, thumbUrl } = req.files;
+    const { title, description, hashtags } = req.body;
+
     try {
         const video = new Video({
             title,
             description,
-            fileUrl: videoUrl,
-            thumbUrl,
+            fileUrl: videoUrl[0].path,
+            thumbUrl: thumbUrl[0].path,
             hashtags: Video.formatHashtags(hashtags),
             owner: _id
         });

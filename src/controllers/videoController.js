@@ -99,17 +99,32 @@ export const getUpload = (req, res) => {
 }
 
 export const postFormRecorder = async (req, res) => {
-    console.log(req.body);
     const { user: { _id } } = req.session;
-    const { videoUrl, thumbUrl } = req.files;
-    const { title, description, hashtags } = req.body;
-    console.log(_id);
-    console.log(videoUrl,
-        thumbUrl,
-        title,
-        description,
-        hashtags);
-}
+    // const { videoUrl, thumbUrl } = req.files;
+    const { title, description, hashtags, videoUrl, thumbUrl } = req.body;
+    try {
+        const video = new Video({
+            title,
+            description,
+            fileUrl: videoUrl,
+            thumbUrl,
+            hashtags: Video.formatHashtags(hashtags),
+            owner: _id
+        });
+        await video.save();
+        const user = await User.findById(_id);
+        user.videos.push(video._id);
+        user.save();
+        req.flash("info", "업로드 완료!");
+        return res.redirect("/");
+    } catch (error) {
+        console.log(error);
+        return res.status(400).render("upload", {
+            pageTitle: "Upload Video",
+            errorMessage: error._message
+        });
+    };
+};
 
 export const postUpload = async (req, res) => {
     const { user: { _id } } = req.session;

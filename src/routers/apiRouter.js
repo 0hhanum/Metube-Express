@@ -2,10 +2,14 @@
 
 import express from "express";
 import { registerView, createComment, postFormRecorder } from "../controllers/videoController";
+import { videoUpload } from "../middlewares";
 
 const apiRouter = express.Router();
 
 apiRouter.post("/videos/:id([0-9a-f]{24})/view", registerView);
 apiRouter.post("/videos/:id([0-9a-f]{24})/comments", createComment);
-apiRouter.post("/videos/upload", postFormRecorder);
+apiRouter.post("/videos/upload", videoUpload.fields([
+    { name: "videoUrl", maxCount: 1 },
+    { name: "thumbUrl", maxCount: 1 }
+]), postFormRecorder);
 export default apiRouter;

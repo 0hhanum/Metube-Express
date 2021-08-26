@@ -85,9 +85,9 @@ const handleDownload = async () => {
     await fetch("/api/videos/upload", {
         method: "POST",
         headers: {
-            "Content-Type": "multipart/form-data",
+            // "Content-Type": "multipart/form-data",
         },
-        body: form
+        body: form,
     });
     // var form = document.createElement("form");
     // form.setAttribute("charset", "UTF-8");

@@ -3,9 +3,10 @@ include ../mixins/video
 
 block content 
     div.profile__data
-        if user.avatarUrl && user.socialOnly === false && !isHeroku
-            img(src="/" + user.avatarUrl, width="100").avatar
-        else if user.avatarUrl && user.socialOnly === true && isHeroku
+        if user.avatarUrl && user.socialOnly === false 
+            //- img(src="/" + user.avatarUrl, width="100").avatar
+            img(src=user.avatarUrl, width="100").avatar
+        else if user.avatarUrl && user.socialOnly === true
             img(src=user.avatarUrl, width="100").avatar
         else 
             div.avatar-box

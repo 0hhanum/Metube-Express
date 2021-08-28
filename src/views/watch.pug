@@ -5,8 +5,10 @@ block content
     //- inline if문
     div.container-box(data-username=loggedInUser.name, data-userId=loggedInUser._id)
         div#videoContainer(data-videoId=video._id)
-            //- video(src="/"+video.fileUrl, width="70%")
-            video(src=video.fileUrl, width="70%")
+            if isHeroku
+                video(src=video.fileUrl, width="70%")
+            else
+                video(src="/"+video.fileUrl, width="70%")
             div#videoControls.videoControls
                 div.videoControls__play
                     span#play.videoControls__playBtn

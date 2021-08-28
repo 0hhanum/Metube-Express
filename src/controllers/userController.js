@@ -157,9 +157,9 @@ export const postEdit = async (req, res) => {
             return res.render("edit-profile", { pageTitle: "수정하기", errorMessage: "중복되는 메일 주소입니다." });
         }
     }
-
+    const isHeroku = process.env.NODE_ENV === "production";
     const updatedUser = await User.findByIdAndUpdate(_id, {
-        avatarUrl: file ? file.location : avatarUrl,
+        avatarUrl: file ? (isHeroku ? file.location : file.path) : avatarUrl,
         // 사용자가 avatar 를 바꾸는게 아닌경우를 처리
         name,
         email,

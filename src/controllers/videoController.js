@@ -98,6 +98,8 @@ export const getUpload = (req, res) => {
     return res.render("upload", { pageTitle: "Upload Video" });
 }
 
+const isHeroku = process.env.NODE_ENV === "production";
+
 export const postFormRecorder = async (req, res) => {
     const { user: { _id } } = req.session;
     const { videoUrl, thumbUrl } = req.files;
@@ -106,8 +108,8 @@ export const postFormRecorder = async (req, res) => {
         const video = new Video({
             title,
             description,
-            fileUrl: videoUrl[0].location,
-            thumbUrl: thumbUrl[0].location,
+            fileUrl: isHeroku ? videoUrl[0].location : videoUrl[0].path,
+            thumbUrl: isHeroku ? thumbUrl[0].location : thumbUrl[0].path,
             hashtags: Video.formatHashtags(hashtags),
             owner: _id
         });
@@ -133,8 +135,8 @@ export const postUpload = async (req, res) => {
         const video = new Video({
             title,
             description,
-            fileUrl: videoFile[0].location,
-            thumbUrl: thumb[0].location,
+            fileUrl: isHeroku ? videoUrl[0].location : videoUrl[0].path,
+            thumbUrl: isHeroku ? thumbUrl[0].location : thumbUrl[0].path,
             hashtags: Video.formatHashtags(hashtags),
             owner: _id
         });

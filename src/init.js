@@ -1,3 +1,4 @@
+import "regenerator-runtime";
 import "dotenv/config";
 import "./db";
 // 파일 자체를 import. 파일은 import 되는 순간 실행되며 서버에 db를 연결시킨다.

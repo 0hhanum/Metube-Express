@@ -10,8 +10,7 @@ module.exports = {
         recorder: BASE_JS + "recorder.js",
         commentSection: BASE_JS + "commentSection.js",
     },
-    mode: "development",
-    watch: true,
+    // watch: true,
     // nodemon 과 같이 npm run assets 가 종료되지 않음.
     plugins: [
         new MiniCssExtractPlugin({

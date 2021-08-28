@@ -31,7 +31,9 @@ const addComment = (text, id) => {
     commentOwnerLink.appendChild(commentOwner);
     newComment.appendChild(commentText);
     newComment.appendChild(commentOwnerLink);
-    newComment.appendChild(delBtn);
+    if (user) {
+        newComment.appendChild(delBtn);
+    };
     newComment.className = "video__comment";
     commentText.className = "comment__text"
     videoComments.prepend(newComment);

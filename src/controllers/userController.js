@@ -138,7 +138,7 @@ export const getEdit = (req, res) => {
 
 export const postEdit = async (req, res) => {
     const { session: { user, user: { _id, avatarUrl } },
-        body: { name, email, username, location },
+        body: { name, email, location },
         file } = req;
     /*
     const userId = req.session.user._id 
@@ -163,7 +163,6 @@ export const postEdit = async (req, res) => {
         // 사용자가 avatar 를 바꾸는게 아닌경우를 처리
         name,
         email,
-        username,
         location
     }, { new: true });
     // new 옵션은 findByIdAndUpdate 가 updated object 를 반환할 건지 기존 것을 반환할 건지 결정

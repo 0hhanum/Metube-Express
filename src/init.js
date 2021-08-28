@@ -9,7 +9,8 @@ import "./models/Comment";
 import app from "./server";
 
 
-const PORT = 4000;
+const PORT = process.env.PORT || 4000;
+// heroku port 가 존재하지 않으면 4000 포트로 연결
 
 const handleListening = () => console.log(`✅ Server listening on port http://localhost:${PORT} 🚀`)
 // ES6 함수 생성법 (매개변수) => 함수 console.log("Server listening on port 4000 🚀")

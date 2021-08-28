@@ -427,6 +427,9 @@ form label {
 .video__comments .video__comment span.del {
   margin-top: 15px;
   font-size: 13px;
+  right: 500px;
+  position: absolute;
+  cursor: pointer;
 }
 .video__comments .video__comment .comment__text {
   font-size: 30px;

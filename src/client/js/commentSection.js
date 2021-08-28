@@ -5,17 +5,21 @@ const textarea = form.querySelector("textarea");
 const delBtns = document.getElementsByClassName("del");
 
 const user = containerBox.dataset.username;
+const userId = containerBox.dataset.userid;
+
 
 const addComment = (text, id) => {
     const videoComments = document.querySelector(".video__comments ul");
     const newComment = document.createElement("li");
     newComment.dataset.commentid = id;
-    const commentOwner = document.createElement("span");
+    const commentOwnerLink = document.createElement("a");
+    const commentOwner = document.createElement("span")
     const commentText = document.createElement("span");
     let delBtn;
     commentText.innerText = text;
     if (user) {
         commentOwner.innerText = user;
+        commentOwnerLink.href = `/users/${userId}`;
         delBtn = document.createElement("span");
         delBtn.innerText = "삭제";
         delBtn.className = "del";
@@ -24,8 +28,9 @@ const addComment = (text, id) => {
     } else {
         commentOwner.innerText = "익명";
     }
+    commentOwnerLink.appendChild(commentOwner);
     newComment.appendChild(commentText);
-    newComment.appendChild(commentOwner);
+    newComment.appendChild(commentOwnerLink);
     newComment.appendChild(delBtn);
     newComment.className = "video__comment";
     commentText.className = "comment__text"

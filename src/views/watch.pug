@@ -3,7 +3,7 @@ extends base.pug
 block content
     //- h3 #{video.views} #{video.views === 1 ? "view" : "views" }
     //- inline if문
-    div.container-box(data-username=loggedInUser.name)
+    div.container-box(data-username=loggedInUser.name, data-userId=loggedInUser._id)
         div#videoContainer(data-videoId=video._id)
             video(src="/"+video.fileUrl, width="70%")
             div#videoControls.videoControls
@@ -44,7 +44,8 @@ block content
                 if comment.owner
                     li.video__comment(data-commentId=comment._id)
                         span.comment__text #{comment.text}
-                        span #{comment.owner.name} 
+                        a(href=`/users/${comment.owner._id}`)
+                            span #{comment.owner.name} 
                         if String(comment.owner._id) === String(loggedInUser._id)
                             span.del 삭제
                 else 

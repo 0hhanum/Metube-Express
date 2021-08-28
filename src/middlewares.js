@@ -1,4 +1,19 @@
 import multer from "multer";
+import multerS3 from "multer-s3";
+import aws from "aws-sdk";
+
+const s3 = new aws.S3({
+    credentials: {
+        accessKeyId: process.env.AWS_ID,
+        secretAccessKey: process.env.AWS_SECRET
+    }
+});
+
+const multerUploader = multerS3({
+    s3: s3,
+    bucket: 'metube-nodejs',
+    acl: "public-read",
+});
 
 export const localsMiddleware = (req, res, next) => {
     res.locals.loggedIn = Boolean(req.session.loggedIn);
@@ -30,9 +45,11 @@ export const publicOnlyMiddleware = (req, res, next) => {
 // multer 사용 위한 middleware configuration.
 // dest: "uploads/" => 사용자가 보낸 파일을 uploads 폴더에 저장.
 export const avatarUpload = multer({
-    dest: "uploads/avatars/", limits: { fileSize: 30000000 }
+    dest: "uploads/avatars/", limits: { fileSize: 30000000 },
+    storage: multerUploader
 });
 export const videoUpload = multer({
-    dest: "uploads/videos/", limits: { fileSize: 100000000 }
+    dest: "uploads/videos/", limits: { fileSize: 100000000 },
+    storage: multerUploader
 });
 // *** multer 사용 시에는 form 의 enctype 지정해주는 걸 잊지 말기 ***

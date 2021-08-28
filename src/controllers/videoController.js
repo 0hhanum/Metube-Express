@@ -102,13 +102,12 @@ export const postFormRecorder = async (req, res) => {
     const { user: { _id } } = req.session;
     const { videoUrl, thumbUrl } = req.files;
     const { title, description, hashtags } = req.body;
-
     try {
         const video = new Video({
             title,
             description,
-            fileUrl: videoUrl[0].path,
-            thumbUrl: thumbUrl[0].path,
+            fileUrl: videoUrl[0].location,
+            thumbUrl: thumbUrl[0].location,
             hashtags: Video.formatHashtags(hashtags),
             owner: _id
         });
@@ -134,8 +133,8 @@ export const postUpload = async (req, res) => {
         const video = new Video({
             title,
             description,
-            fileUrl: videoFile[0].path,
-            thumbUrl: thumb[0].path,
+            fileUrl: videoFile[0].location,
+            thumbUrl: thumb[0].location,
             hashtags: Video.formatHashtags(hashtags),
             owner: _id
         });

@@ -17,9 +17,9 @@
 
 • bcrypt (for hash user password)
 
-• webpack (Bundle all module (FE js, scss))
+• Webpack (Bundle all module (FE js, scss))
 
-• sass
+• SCSS
 
 • multar (manage static)
 
